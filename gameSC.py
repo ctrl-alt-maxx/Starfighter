@@ -45,7 +45,7 @@ class StartScreen:
         
       
     
-        self.button.pack(side=tk.BOTTOM)
+        #self.button1.pack(side=tk.BOTTOM)
          
         
     # def startGame(self):
@@ -55,6 +55,8 @@ class StartScreen:
     def start(self):
         #self.draw()
         self.master.mainloop()
+
+#class GameScreen: 
     
 if __name__ == "__main__":
     app = StartScreen(root)
