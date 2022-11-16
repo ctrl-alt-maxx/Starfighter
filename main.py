@@ -4,7 +4,7 @@ from PIL import Image
 
 root = tk.Tk()
 
-# COULEUR DE FOND
+# COULEUR DE FOND       
 root.config(background="white")
 
 # AJOUTER UN TITRE A LA FENETRE TKINTER
@@ -18,6 +18,9 @@ canvasBase = tk.Canvas(root, background="black", width=700, height=500)
 canvasBase.pack()
 
 # Vaisseau 
-vaisseau = Image.open("./images/Vaisseau.jpg")
-vaisseau.PIL.Image.show()
+vaisseau = Image.open("/images/Vaisseau.png")
+vaisseau.show()  
+print("vaisseau") 
+
+
 
