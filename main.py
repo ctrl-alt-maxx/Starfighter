@@ -1,6 +1,7 @@
 
 import tkinter as tk 
-from PIL import Image
+from tkinter import PhotoImage, Label
+
 
 root = tk.Tk()
 
@@ -17,10 +18,21 @@ root.geometry("1000x1000")
 canvasBase = tk.Canvas(root, background="black", width=700, height=500)
 canvasBase.pack()
 
-# Vaisseau 
-vaisseau = Image.open("/images/Vaisseau.png")
-vaisseau.show()  
-print("vaisseau") 
+class Vaisseau:
+    def __init__(self, master):
+        self.master = master
+
+        # Creation d,un widget Canvas (zone graphique)
+        self.vaisseauImg = PhotoImage(file = "Vaisseau.jpg")
+        self.labelImg = Label(self.master, i=self.vaisseauImg)
+        self.labelImg.pack()
+
+    def start(self):
+        self.master.mainloop()
 
 
+if __name__ == "__main__":
+    app = Vaisseau(root)
+    app.start()
 
+root.mainloop()
