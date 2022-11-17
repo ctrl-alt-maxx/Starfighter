@@ -33,13 +33,13 @@ class StartScreen:
         
         
         self.button2 = tk.Button(self.master, text="Quitter", command=self.master.destroy, font=("Arial", 20), bg="white")
-        self.button2.pack()
+        self.button2.place( x= 300, y= 500)
         
         self.button3 = tk.Button(self.master, text="Règles", font=("Arial", 20), bg="white")
-        self.button3.pack()
+        self.button3.place( x= 300, y= 400)
         
         self.button1 = tk.Button(self.master, text="Jouer", command=self.master.destroy, font=("Arial", 20), bg="white")
-        self.button1.pack()
+        self.button1.place( x= 300, y= 300)
       
         self.limg.pack()
         
