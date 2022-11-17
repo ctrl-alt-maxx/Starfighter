@@ -18,8 +18,11 @@ class StartScreen:
     def __init__(self, master):
         self.master = master
         
-        # Création d'un widget Canvas (zone graphique)
-        self.bgimg= PhotoImage(file = "logo2.png")
+        
+        """Chargement de l'image"""
+        self.bgimg= PhotoImage(file = "logo2.png") 
+        
+        """Création d'un widget Canvas (zone graphique)"""
         self.limg= Label(self.master, i=self.bgimg, bg="black")
         
            
