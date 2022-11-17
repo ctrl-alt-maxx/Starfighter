@@ -72,7 +72,7 @@ class GameScreen:
         self.button1.pack(side=tk.BOTTOM)
         self.button2 = tk.Button(self.master, text="Rejouer", command=self.master.destroy, font=("Arial", 20), bg="white")
         self.button2.pack(side=tk.BOTTOM)
-         
+        
         
         
          
