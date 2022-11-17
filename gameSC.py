@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import BOTH, Canvas, Label, PhotoImage,BOTTOM,RIGHT,LEFT, TOP, X, Y, messagebox
+from tkinter import BOTH, Canvas, Label, PhotoImage,BOTTOM,RIGHT,LEFT, TOP, X, Y
 import game as g
 
 root = tk.Tk()
@@ -8,7 +8,7 @@ root = tk.Tk()
 root.config(background="black")
 
 # Ajouter un titre à la fenêtre Tk
-root.title("Jeu du carré rouge")
+root.title("STARFIGHTER")
 
 # Fixe la taille de la fenêtre en px
 root.geometry("700x800")
@@ -20,10 +20,10 @@ class StartScreen:
         
         
         """Chargement de l'image"""
-        self.bgimg= PhotoImage(file = "logo2.png") 
+        self.bgimg= PhotoImage(master=self.master,file = 'logo2.png') 
         
         """Création d'un widget Canvas (zone graphique)"""
-        self.limg= Label(self.master, i=self.bgimg, bg="black")
+        self.limg= Label(master=self.master, image=self.bgimg)
         
            
         self.button2 = tk.Button(self.master, text="Quitter", command=self.master.destroy, font=("Arial", 20), bg="white")
@@ -36,14 +36,15 @@ class StartScreen:
         self.button1.place( x= 300, y= 300)
       
         self.limg.place( x= 230, y= 60)
-        
+    
+        self.master.mainloop()   
     def start(self):
         self.master.mainloop()
 
 def startGame(self):
         self.master.destroy()
-        game = g.GameScreen(root)
-        game.startit() 
+        g.GameScreen(root).startit()
+
        
 if __name__ == "__main__":
     app = StartScreen(root)
