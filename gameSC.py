@@ -11,7 +11,7 @@ root.config(background="black")
 root.title("Jeu du carré rouge")
 
 # Fixe la taille de la fenêtre en px
-root.geometry("700x1000")
+root.geometry("700x800")
 
 class StartScreen: 
     
@@ -22,7 +22,7 @@ class StartScreen:
         
         # Création d'un widget Canvas (zone graphique)
         self.bgimg= PhotoImage(file = "logo2.png")
-        self.limg= Label(self.master, i=self.bgimg)
+        self.limg= Label(self.master, i=self.bgimg, bg="black")
         
         
       
@@ -33,34 +33,48 @@ class StartScreen:
         
         
         self.button2 = tk.Button(self.master, text="Quitter", command=self.master.destroy, font=("Arial", 20), bg="white")
-        self.button2.place( x= 300, y= 500)
+        self.button2.place( x= 293, y= 500)
         
-        self.button3 = tk.Button(self.master, text="Règles", font=("Arial", 20), bg="white")
-        self.button3.place( x= 300, y= 400)
+        self.button3 = tk.Button(self.master, text="Règles", command=self.master.destroy, font=("Arial", 20), bg="white")
+        self.button3.place( x= 291, y= 400)
         
-        self.button1 = tk.Button(self.master, text="Jouer", command=self.master.destroy, font=("Arial", 20), bg="white")
+        self.button1 = tk.Button(self.master, text="Jouer", command=startGame(), font=("Arial", 20), bg="white")
         self.button1.place( x= 300, y= 300)
       
-        self.limg.pack()
+        self.limg.place( x= 230, y= 60)
+        
+        def startGame(self):
+            self.master.destroy()
+            GameScreen(self.master)    
         
       
     
-        #self.button1.pack(side=tk.BOTTOM)
+        #self.button1.pack(side=tk.BOTTOM
          
         
-    # def startGame(self):
-    #     self.master.destroy()
-    #     GameScreen(self.master)    
+   
     
     def start(self):
         #self.draw()
         self.master.mainloop()
 
-#class GameScreen: 
+class GameScreen: 
+    def __init__(self,master):
+        self.master = master
+        self.master.config(background="black")
+        self.master.title("Starfighter")
+        self.master.geometry("700x800")
+        self.canvas = Canvas(self.master, width=700, height=800, bg="black")
+        self.canvas.pack(fill=BOTH, expand=1)
+        self.label = tk.Label(self.master, text="STARFIGHTER", font=("Arial", 30), bg="white")
+        self.label.pack()
+         
+        
+        
     
-if __name__ == "__main__":
-    app = StartScreen(root)
-    app.start()
+    # if __name__ == "__main__":
+    #     app = StartScreen(root)
+    #     app.start()
     
     
    
