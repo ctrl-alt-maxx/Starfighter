@@ -1,12 +1,12 @@
 
 import tkinter as tk 
 from tkinter import PhotoImage, Label
-from PIL import Image, ImageTk
+
 
 root = tk.Tk()
 
 # COULEUR DE FOND       
-root.config(background="white")
+root.config(background="black")
 
 # AJOUTER UN TITRE A LA FENETRE TKINTER
 root.title("Starfighter")
@@ -23,7 +23,7 @@ class Vaisseau:
         self.master = master
 
         # Creation d,un widget Canvas (zone graphique)
-        self.vaisseauImg = PhotoImage(file = "Vaisseau.jpg")
+        self.vaisseauImg = PhotoImage(file = "vaisseau1.png")
         self.labelImg = Label(self.master, i=self.vaisseauImg)
         self.labelImg.pack()
 
