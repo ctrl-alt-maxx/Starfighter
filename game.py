@@ -4,40 +4,40 @@ from tkinter import BOTH, Canvas, Label, PhotoImage
 root = tk.Tk()
 
 
-class GameScreen:  
-  
+class GameScreen:
     def __init__(self, master):
         self.master = master
+        self.master.config(background="black")
+        self.master.title("STARFIGHTER")
+        self.master.geometry("700x800")
+        self.score = "0"
         
-        self.score = 0
+        self.label = tk.Label(self.master, text="STARFIGHTER", font=("Arial", 20), bg="black", fg="white")
+        self.label.pack()
         
-        self.canvas = tk.Canvas(self.master, width=700, height=800, bg="black")
+        self.label = tk.Label(self.master, text="Score : " + self.score, font=("Arial", 20), bg="black", fg="white")
+        self.label.pack()
+        
+        self.label = tk.Label(self.master, text="Temps : ", font=("Arial", 20), bg="black", fg="white")
+        self.label.pack()
+        
+        self.button = tk.Button(self.master, text="Quitter", command=self.master.destroy, font=("Arial", 20), bg="white")
+        self.button.pack()
+        
+        
+        self.canvas = Canvas(self.master, width=700, height=800, bg="white")
         self.canvas.pack()
         
-        self.button2 = tk.Button(self.master, text="Quitter", command=self.master.destroy, font=("Arial", 20), bg="white")
-        self.button2.place( x= 293, y= 500)
+        # self.canvas.bind("<Button-1>", self.onClick)
         
-        self.label = tk.Label(self.master, text="Score : ", font=("Arial", 20), bg="white")
-        self.label.pack()
         
-        self.label = tk.Label(self.master, text="Temps : ", font=("Arial", 20), bg="white")
-        self.label.pack()
+       
         
-        self.label = tk.Label(self.master, text="Niveau : ", font=("Arial", 20), bg="white")
-        self.label.pack()
-        
-        self.label = tk.Label(self.master, text="Vie : ", font=("Arial", 20), bg="white")
-        self.label.pack()
-        
-        self.label = tk.Label(self.master, text="STARFIGHTER", font=("Arial", 30), bg="white")
-        self.label.pack()
-        
-    def start(self):
-        #self.draw()
+    def startit(self):
         self.master.mainloop()
-            
-        
+
 if __name__ == "__main__":
-        app = GameScreen(root)
-        app.start()
-        
+    app = GameScreen(root)
+    app.startit()   
+    
+    root.mainloop()          
