@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import BOTH, Canvas, Label, PhotoImage
+from tkinter import BOTH, Canvas, Label, PhotoImage,BOTTOM,RIGHT,LEFT, TOP, X, Y, messagebox
 
 
 root = tk.Tk()
@@ -68,6 +68,13 @@ class GameScreen:
         self.canvas.pack(fill=BOTH, expand=1)
         self.label = tk.Label(self.master, text="STARFIGHTER", font=("Arial", 30), bg="white")
         self.label.pack()
+        self.button1 = tk.Button(self.master, text="Quitter", command=self.master.destroy, font=("Arial", 20), bg="white")
+        self.button1.pack(side=tk.BOTTOM)
+        self.button2 = tk.Button(self.master, text="Rejouer", command=self.master.destroy, font=("Arial", 20), bg="white")
+        self.button2.pack(side=tk.BOTTOM)
+         
+        
+        
          
         
         
