@@ -8,7 +8,7 @@ root.config(background="black")
 # Ajouter un titre à la fenêtre Tk
 root.title("STARFIGHTER")
 # Fixe la taille de la fenêtre en px
-root.geometry("700x800")
+root.geometry("650x750")
 
 def startGame():
     root.destroy()
@@ -25,20 +25,24 @@ class StartScreen:
         
         
         """Chargement de l'image"""
-        self.bgimg= PhotoImage(master=self.master,file = 'logo2.png') 
+        self.bgimg= PhotoImage(master=self.master,file = 'logo2.png')
         
         """Création d'un widget Canvas (zone graphique)"""
         self.limg= Label(master=self.master, image=self.bgimg)
-        self.limg.place( x= 230, y= 60)
+        self.limg.borderwidth=0
+        self.limg.place( x= 210, y= 40)
            
-        self.button2 = tk.Button(self.master, text="Quitter", command=self.master.destroy, font=("Arial", 20), bg="white")
-        self.button2.place( x= 293, y= 500)
+        self.button2 = tk.Button(self.master, text="Quit", command=self.master.destroy, font=("Terminal", 20),fg="red",bg="black",activebackground="red",activeforeground="black",border=4,relief="ridge",pady=10)
+        self.button2.place( x= 277, y= 600)
         
-        self.button3 = tk.Button(self.master, text="Règles", command=startRules, font=("Arial", 20), bg="white")
-        self.button3.place( x= 291, y= 400)
+        self.button3 = tk.Button(self.master, text="Rules", command=startRules, font=("Terminal", 20),fg="red",bg="black",activebackground="red",activeforeground="black",border=4,relief="ridge",pady=10)
+        self.button3.place( x= 270, y= 400)
         
-        self.button1 = tk.Button(self.master, text="Jouer",command=startGame, font=("Arial", 20), bg="white")
-        self.button1.place( x= 300, y= 300)
+        self.button1 = tk.Button(self.master, text="Start",command=startGame, font=("Terminal", 20),fg="red",bg="black",activebackground="red",activeforeground="black",border=4,relief="ridge",pady=10)
+        self.button1.place( x= 275, y= 300)
+        
+        self.button1 = tk.Button(self.master, text="Leaderboard",command=startGame, font=("Terminal", 20),fg="red",bg="black",activebackground="red",activeforeground="black",border=4,relief="ridge",pady=10)
+        self.button1.place( x= 225, y= 500)
       
         
     

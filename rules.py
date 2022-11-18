@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import *
-from tkinter import BOTTOM
+from tkinter import BOTTOM, font
 
 
 root = tk.Tk()
@@ -8,6 +8,7 @@ root.config(background="black")
 root.title("STARFIGHTER")
 root.geometry("700x800")
 
+font.families()
 
 def callback(e):
    x= e.x
@@ -29,16 +30,18 @@ class RulesScreen:
         self.score = "0"
         self.master.geometry("700x800")
         
-        self.label = Label(self.master, text="STARFIGHTER", font=("Arial", 20), bg="black", fg="white")
+        self.label = Label(self.master, text="STARFIGHTER", font=("Terminal", 22), bg="black", fg="white")
         self.label.place( x= 250, y= 60)
         
-        self.label2 = tk.Label(self.master, text="Règle 1 : quand tu sera de retour au menu tu ne peux plus afficher les règles sorry :(" + self.score, font=("Arial", 13), bg="black", fg="white")
+        self.label2 = tk.Label(self.master, text="Règle 1 : quand tu sera de retour au menu tu ne", font=("Terminal", 13), bg="black", fg="white")
+        self.label4 = tk.Label(self.master, text="peux plus afficher les règles sorry -__-", font=("Terminal", 13), bg="black", fg="white")
         self.label2.place( x= 50, y= 100)
+        self.label4.place( x= 50, y= 120)
         
-        self.label3 = tk.Label(self.master, text="Règle 2 : Have fun bitch! ", font=("Arial", 20), bg="black", fg="white")
-        self.label3.place( x= 50, y= 140)
+        self.label3 = tk.Label(self.master, text="Règle 2 : Have fun bitch! ", font=("Terminal", 13), bg="black", fg="white")
+        self.label3.place( x= 50, y= 160)
         
-        self.button = tk.Button(self.master, text="Retour", command=returnBack, font=("Arial", 20), bg="white")
+        self.button = tk.Button(self.master, text="Retour", command=returnBack, font=("Terminal",20), bg="white")
         self.button.place( x= 285, y= 700)
         
       
