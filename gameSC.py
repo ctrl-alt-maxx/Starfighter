@@ -3,11 +3,13 @@ from tkinter import ttk ,BOTH, Canvas, Label, PhotoImage,BOTTOM,RIGHT,LEFT, TOP,
 from tkinter import *
 
 root = tk.Tk()
-# Couleur de fond 
+"""Couleur de fond"""
 root.config(background="black")
-# Ajouter un titre à la fenêtre Tk
+
+"""Ajouter un titre à la fenêtre Tk"""
 root.title("STARFIGHTER")
-# Fixe la taille de la fenêtre en px
+
+"""Fixe la taille de la fenêtre en px"""
 root.geometry("650x750")
 
 def startGame():
@@ -17,6 +19,10 @@ def startGame():
 def startRules():
     root.destroy()
     import rules
+    
+def startLeaderboard():
+    root.destroy()
+    import leaderboard
 
 class StartScreen: 
     
@@ -41,7 +47,7 @@ class StartScreen:
         self.button1 = tk.Button(self.master, text="Start",command=startGame, font=("Terminal", 20),fg="red",bg="black",activebackground="red",activeforeground="black",border=4,relief="ridge",pady=10)
         self.button1.place( x= 275, y= 300)
         
-        self.button1 = tk.Button(self.master, text="Leaderboard",command=startGame, font=("Terminal", 20),fg="red",bg="black",activebackground="red",activeforeground="black",border=4,relief="ridge",pady=10)
+        self.button1 = tk.Button(self.master, text="Leaderboard",command=startLeaderboard, font=("Terminal", 20),fg="red",bg="black",activebackground="red",activeforeground="black",border=4,relief="ridge",pady=10)
         self.button1.place( x= 225, y= 500)
       
         
