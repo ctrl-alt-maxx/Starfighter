@@ -1,6 +1,6 @@
 
 import tkinter as tk 
-from tkinter import Frame, PhotoImage, Label
+from tkinter import CENTER, Frame, PhotoImage, Label
 from PIL import ImageTk, Image
 from pygame import image  
 
@@ -66,9 +66,14 @@ class Vaisseau:
 
 # HEADS UP DISPLAY 
 class HUD: 
-    
+    # Doit etre capable d'afficher les points courants, niveau de jeu, vie restante, etc.
+ 
+    def pointsCounter(): 
+        labelPoints = tk.Label(root, text='Points: ', bg='black', fg='white', font = 30, padx=10, pady=10)
+        labelPoints.place(relx=0.0, rely=0.0, anchor='nw')
+        
 
-
+    pointsCounter()
 
 
 
