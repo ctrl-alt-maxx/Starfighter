@@ -1,69 +1,27 @@
-import tkinter as tk
-from tkinter import BOTH, Canvas, Label, PhotoImage
 
+import tkinter as tk 
+
+#my_w = tk.Tk()
+#my_w.geometry("615x400")  # width and height 
+#def my_callback(event):
+#     l1.config(text='Position x : '+ str(event.x) +", y : "+ str(event.y))
+
+#l1=tk.Label(my_w,text='to Display',bg='yellow',font=30)
+#l1.pack(padx=10,pady=10)
+#my_w.bind('<B1-Motion>',my_callback) # Mouse left button pressed move
+#my_w.mainloop()
+   
 
 root = tk.Tk()
+root.geometry("615x400")
 
-# Couleur de fond 
-root.config(background="black")
+def motion(event):
+    #x, y = event.x, event.y
+    #print('{}, {}'.format(x, y))
+    l1.config(text='Position x : '+ str(event.x) +", y : "+ str(event.y))
 
-# Ajouter un titre à la fenêtre Tk
-root.title("Jeu du carré rouge")
+l1=tk.Label(root,text='just move',bg='yellow',font=30)
+l1.pack(padx=10,pady=10)
 
-# Fixe la taille de la fenêtre en px
-root.geometry("700x1000")
-
-class StartScreen: 
-    
-    def __init__(self, master):
-        self.master = master
-        
-        
-        
-        # Création d'un widget Canvas (zone graphique)
-        self.bgimg= PhotoImage(file = "logo2.png")
-        self.limg= Label(self.master, i=self.bgimg)
-        
-        
-      
-        
-                 #self.label = tk.Label(self.master, text="JEU DU CARRÉ ROUGE", font=("Arial", 30), bg="white")
-        #self.label.pack()
-        
-        
-        
-        self.button2 = tk.Button(self.master, text="Quitter", command=self.master.destroy, font=("Arial", 20), bg="white")
-        self.button2.pack()
-        
-        self.button3 = tk.Button(self.master, text="Règles", font=("Arial", 20), bg="white")
-        self.button3.pack()
-        
-        self.button1 = tk.Button(self.master, text="Jouer", command=self.master.destroy, font=("Arial", 20), bg="white")
-        self.button1.pack()
-      
-        self.limg.pack()
-        
-      
-    
-        #self.button1.pack(side=tk.BOTTOM)
-         
-        
-    # def startGame(self):
-    #     self.master.destroy()
-    #     GameScreen(self.master)    
-    
-    def start(self):
-        #self.draw()
-        self.master.mainloop()
-
-#class GameScreen: 
-    
-if __name__ == "__main__":
-    app = StartScreen(root)
-    app.start()
-    
-    
-   
-
-   
+root.bind('<Motion>', motion)
 root.mainloop()
