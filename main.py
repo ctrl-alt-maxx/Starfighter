@@ -2,7 +2,7 @@
 from functools import partial
 from shutil import move
 import tkinter as tk 
-from tkinter import CENTER, Frame, PhotoImage, Label
+from tkinter import CENTER, Frame, OptionMenu, PhotoImage, Label, StringVar
 from PIL import ImageTk, Image
 from pygame import image  
 
@@ -22,7 +22,7 @@ frame = Frame(root)
 frame.pack()
 
 # CREATION DU CANVAS 
-canvasBase = tk.Canvas(root, background="black", width=800, height=1000, highlightthickness=0, relief='ridge')
+canvasBase = tk.Canvas(root, background="black", width=800, height=1000, highlightthickness=1, highlightbackground="red", relief='ridge')
 canvasBase.pack()
 
 class Vaisseau:
@@ -59,9 +59,11 @@ class Vaisseau:
     # Define a function to allow the image to move within the canvas 
     def move(e):
         global image
-        image = ImageTk.PhotoImage(Image.open("vaisseau.png"))
+        new = Vaisseau.imageVaisseau.resize((50,50), Image.ANTIALIAS)
+        image = ImageTk.PhotoImage(new)
         
         img = canvasBase.create_image(e.x, e.y, image = image)
+        
 
     # Bind the move function 
     canvasBase.bind("<Motion>", move)       ## THIS WORKS!! vaisseau follows the cursor
@@ -78,8 +80,21 @@ class HUD:
        print(HUD.score)
     
     
-    labelPoints = tk.Button(root, text='Score: ' + str(score), command=scoreCounter, font = 90, padx=10, pady=10)
+    labelPoints = tk.Label(root, text='Score: ' + str(score), font = 90, padx=10, pady=10)
     labelPoints.place(relx=0.0, rely=0.0, anchor='nw')
+
+    menu = StringVar()
+    menu.set("Choississez le niveau de jeu")
+    drop = OptionMenu(root, menu, "Facile", "Moyen", "Difficile")
+    drop.pack(anchor="e")
+
+    def vieRestante():
+        vie = Image.open("lives.png")
+        vie.resize((10,10), Image.ANTIALIAS)
+
+ 
+    
+   
 
 
 
