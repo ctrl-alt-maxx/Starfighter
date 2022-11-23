@@ -1,4 +1,5 @@
 
+from functools import partial
 import tkinter as tk 
 
 
@@ -17,18 +18,35 @@ import tkinter as tk
 root = tk.Tk()
 root.geometry("615x400")
 
-#def motion(event):
+def motion(event):
     #x, y = event.x, event.y
     #print('{}, {}'.format(x, y))
-#    l1.config(text='Position x : '+ str(event.x) +", y : "+ str(event.y))
+    l1.config(text='Position x : '+ str(event.x) +", y : "+ str(event.y))
 
-#l1=tk.Label(root,text='just move',bg='yellow',font=30)
-#l1.pack(padx=10,pady=10)
+l1=tk.Label(root,text='just move',bg='yellow',font=30)
+l1.pack(padx=10,pady=10)
 
-#root.bind('<Motion>', motion)
+root.bind('<Motion>', motion)
 
-   
-labelPoints = tk.Label(root, text="Points: ", font = 30, padx=10, pady=10)
+score = 0
+
+
+
+labelPoints = tk.Label(root, text="Points: " + str(score), font = 30, padx=10, pady=10)
 labelPoints.place(relx=0.0, rely=0.0, anchor='nw')
+
    
+
+
+def foo(texte, event):
+    print(texte)
+
+count = 0  
+  
+def add(): 
+    global count  
+    count += 1 
+    print (count) 
+button = tk.Button(text = 'add 1',command = add ).pack() 
+
 root.mainloop()

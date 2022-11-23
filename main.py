@@ -1,4 +1,6 @@
 
+from functools import partial
+from shutil import move
 import tkinter as tk 
 from tkinter import CENTER, Frame, PhotoImage, Label
 from PIL import ImageTk, Image
@@ -62,18 +64,26 @@ class Vaisseau:
         img = canvasBase.create_image(e.x, e.y, image = image)
 
     # Bind the move function 
-    canvasBase.bind("<Motion>", move)       ## THIS WORKS!! vaisseau allows to move with the cursor 
+    canvasBase.bind("<Motion>", move)       ## THIS WORKS!! vaisseau follows the cursor
 
 # HEADS UP DISPLAY 
 class HUD: 
     # Doit etre capable d'afficher les points courants, niveau de jeu, vie restante, etc.
  
-    def pointsCounter(): 
-        labelPoints = tk.Label(root, text='Points: ', bg='black', fg='white', font = 30, padx=10, pady=10)
-        labelPoints.place(relx=0.0, rely=0.0, anchor='nw')
-        
+    score = 0
 
-    pointsCounter()
+    def scoreCounter(): 
+       global score
+       HUD.score += 1
+       print(HUD.score)
+    
+    
+    labelPoints = tk.Button(root, text='Score: ' + str(score), command=scoreCounter, font = 90, padx=10, pady=10)
+    labelPoints.place(relx=0.0, rely=0.0, anchor='nw')
+
+
+
+
 
 
 
