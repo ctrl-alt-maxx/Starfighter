@@ -5,12 +5,7 @@ from PIL import ImageTk, Image
 from pygame import image  
 
 
-#import sys
-#print(sys.executable)
-
 root = tk.Tk()
-
-
 
 # COULEUR DE FOND       
 root.config(background="black")
@@ -19,26 +14,16 @@ root.config(background="black")
 root.title("Starfighter")
 
 # FIXE LA TAILLE EN PIXEL 
-root.geometry("1000x1000")
+root.geometry("5000x5000")
 
 frame = Frame(root)
 frame.pack()
 
 # CREATION DU CANVAS 
-canvasBase = tk.Canvas(root, background="black", width=800, height=1000)
+canvasBase = tk.Canvas(root, background="black", width=800, height=1000, highlightthickness=0, relief='ridge')
 canvasBase.pack()
 
 class Vaisseau:
-    #def __init__(self, master):
-    #    self.master = master
-
-        # Creation d,un widget Canvas (zone graphique)
-    #    self.vaisseauImg = PhotoImage(file = "vaisseau1.png")
-    #    self.labelImg = Label(self.master, i=self.vaisseauImg)
-    #    self.labelImg.pack()
-
-    #def start(self):
-    #    self.master.mainloop()
 
     imageVaisseau = Image.open("vaisseau.png")
     test = ImageTk.PhotoImage(imageVaisseau)
@@ -46,10 +31,6 @@ class Vaisseau:
     #Resize the Image using resize method
     resized_image = imageVaisseau.resize((50,50), Image.ANTIALIAS)
     new_image = ImageTk.PhotoImage(resized_image)
-
-
-    #label1 = tk.Label(image=new_image, background="black")
-    #label1.image = new_image
 
     img = canvasBase.create_image(40, 40, image=new_image)
 
@@ -77,16 +58,19 @@ class Vaisseau:
     def move(e):
         global image
         image = ImageTk.PhotoImage(Image.open("vaisseau.png"))
+        
         img = canvasBase.create_image(e.x, e.y, image = image)
 
     # Bind the move function 
-    canvasBase.bind("<B1-Motion>", move)
+    canvasBase.bind("<Motion>", move)       ## THIS WORKS!! vaisseau allows to move with the cursor 
 
-  
+# HEADS UP DISPLAY 
+class HUD: 
+    
 
 
-#if __name__ == "__main__":
-#    app = Vaisseau(root)
-#    app.start()
+
+
+
 
 root.mainloop()
