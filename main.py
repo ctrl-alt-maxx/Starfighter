@@ -1,7 +1,8 @@
 
 import tkinter as tk 
 from tkinter import Frame, PhotoImage, Label
-from PIL import ImageTk, Image  
+from PIL import ImageTk, Image
+from pygame import image  
 
 
 #import sys
@@ -24,7 +25,7 @@ frame = Frame(root)
 frame.pack()
 
 # CREATION DU CANVAS 
-canvasBase = tk.Canvas(root, background="black", width=400, height=400)
+canvasBase = tk.Canvas(root, background="black", width=800, height=1000)
 canvasBase.pack()
 
 class Vaisseau:
@@ -43,17 +44,43 @@ class Vaisseau:
     test = ImageTk.PhotoImage(imageVaisseau)
 
     #Resize the Image using resize method
-    #resized_image = imageVaisseau.resize((300,220), Image.ANTIALIAS)
-    #new_image = ImageTk.PhotoImage(resized_image)
+    resized_image = imageVaisseau.resize((50,50), Image.ANTIALIAS)
+    new_image = ImageTk.PhotoImage(resized_image)
 
 
-    label1 = tk.Label(image=test)
-    label1.image = test
+    #label1 = tk.Label(image=new_image, background="black")
+    #label1.image = new_image
 
-    #canvasBase.create_image(0, 0, image=imageVaisseau)
+    img = canvasBase.create_image(40, 40, image=new_image)
 
-    # Position image
-    label1.place(x=4, y=4)
+    def left(e) :
+        x = -20
+        y = 0
+        canvasBase.move(Vaisseau.img, x, y)
+
+    def right(e):
+        x = 20
+        y = 0
+        canvasBase.move(Vaisseau.img, x, y)
+
+    def up(e):
+        x = 0
+        y = -20
+        canvasBase.move(Vaisseau.img, x, y)
+    
+    def down(e):
+        x = 0
+        y = 20
+        canvasBase.move(Vaisseau.img, x, y)
+
+    # Define a function to allow the image to move within the canvas 
+    def move(e):
+        global image
+        image = ImageTk.PhotoImage(Image.open("vaisseau.png"))
+        img = canvasBase.create_image(e.x, e.y, image = image)
+
+    # Bind the move function 
+    canvasBase.bind("<B1-Motion>", move)
 
   
 
