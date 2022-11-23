@@ -1,7 +1,10 @@
 
 import tkinter as tk 
 from tkinter import PhotoImage, Label
+from PIL import ImageTk, Image  
 
+import sys
+print(sys.executable)
 
 root = tk.Tk()
 
