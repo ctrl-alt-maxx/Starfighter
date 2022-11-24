@@ -25,27 +25,34 @@ canvasBase.pack()
 class Asteroids:
    
     
-    def __init__(self, x, y, canvas):
+    def __init__(self,master):
+        
+        self.master = master
         
         imgAsteroide = Image.open("asteroide.png")
         new = imgAsteroide.resize((60, 60), Image.ANTIALIAS)
         self.image = ImageTk.PhotoImage(new)
      
         
-        self.x = x
-        self.y = y
-        self.canvas = canvas
-        self.canvas.create_image(self.x, self.y, image = self.image)
-        
-        self.canvas.after(100, self.move)
+        self.x = 100
+        self.y = 100
+        self.label = Label(master=self.master, image=self.image)
+        #self.label.create_image(self.x, self.y, image = self.image)
+        self.label.place( x= self.x, y= self.y)
         
     def move(self):
-        self.canvas.move(self.image, 0, 100)
-        self.canvas.after(100, self.move)
+        self.label.move(100,150)
+       
+        
+    def start(self):
+        self.master.mainloop()
 
-if __name__ == "__main__":
-    Asteroids(130, 160, canvasBase)
-    root.mainloop()
+
+
+
+app = Asteroids(canvasBase)
+app.start()
+root.mainloop()
  
 
     
