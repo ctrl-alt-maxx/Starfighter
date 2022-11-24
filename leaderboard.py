@@ -9,7 +9,6 @@ root.title("Leaderboard")
 root.geometry("1500x1500")
 
 def returnBack():
-    root.destroy()
     import gameSC
 
 # name = "Marc"
