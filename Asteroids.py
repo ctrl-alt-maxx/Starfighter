@@ -28,22 +28,14 @@ class Asteroide:
     image = ImageTk.PhotoImage(new)
     canvasBase.create_image(160, 160, image = image)
     
-class Asteroids:
-    def __init__(self, master):
-        self.master = master
-        self.canvas = Canvas(self.master, width=700, height=800, bg="black")
-        self.canvas.pack()
-        self.canvas.bind("<Button-1>", self.onClick)
-        self.canvas.bind("<Button-3>", self.onRightClick)
-        self.canvas.bind("<Motion>", self.onMouseMove)
-        self.canvas.bind("<Key>", self.onKeyPress)
-        self.canvas.bind("<KeyRelease>", self.onKeyRelease)
-        self.canvas.focus_set()
-        self.master.after(100, self.update)
-        self.master.mainloop()
+    def __init__(self, x, y, canvas):
         
-    def update(self):
-        self.master.after(100, self.update)
+        self.x = x
+        self.y = y
+        self.canvas = canvas
+        self.canvas.create_image(self.x, self.y, image = self.image)
+    
+
         
             
 if __name__ == "__main__":
