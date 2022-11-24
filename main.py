@@ -2,7 +2,7 @@
 from functools import partial
 from shutil import move
 import tkinter as tk 
-from tkinter import CENTER, Frame, OptionMenu, PhotoImage, Label, StringVar
+from tkinter import CENTER, Canvas, Frame, OptionMenu, PhotoImage, Label, StringVar
 from PIL import ImageTk, Image
 from pygame import image  
 
@@ -34,7 +34,7 @@ class Vaisseau:
     resized_image = imageVaisseau.resize((50,50), Image.ANTIALIAS)
     new_image = ImageTk.PhotoImage(resized_image)
 
-    img = canvasBase.create_image(40, 40, image=new_image)
+    #img = canvasBase.create_image(40, 40, image=new_image)
 
     def left(e) :
         x = -20
@@ -92,12 +92,16 @@ class HUD:
         vie = Image.open("lives.png")
         vie.resize((10,10), Image.ANTIALIAS)
 
- 
-    
-   
+
+
+imgOvni = Image.open("ovnii.png")
 
 
 
+new = imgOvni.resize((50,50), Image.ANTIALIAS)
+image = ImageTk.PhotoImage(new)
+
+img = canvasBase.create_image(50, 50, image = image)
 
 
 
