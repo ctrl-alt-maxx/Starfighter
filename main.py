@@ -6,8 +6,6 @@ from tkinter import ANCHOR, CENTER, Canvas, Frame, OptionMenu, PhotoImage, Label
 from PIL import ImageTk, Image
 from pygame import image  
 import c31Geometry2 as c31
-from trash import motion
-
 
 root = tk.Tk()
 
@@ -76,27 +74,21 @@ class Vaisseau:
     def pewpewMove(forme):
         forme.translate(c31.Vecteur(20, 20))
         forme.draw()
-        
+
+
+    
+      
+
     loop = c31.LoopEvent(canvasBase, partial(pewpewMove, pewpew))
     loop.start()
 
     canvasBase.bind("<1>", pewpewMove)
-
-    
-
-
-
-
 
     #def onclickPewPew():
     #    if (canvasBase.bind("<ButtonPress-2>")):
     #        Vaisseau.pewpew.draw()
 
     
-
-
-
-
 # HEADS UP DISPLAY 
 class HUD: 
     # Doit etre capable d'afficher les points courants, niveau de jeu, vie restante, etc.
@@ -107,7 +99,6 @@ class HUD:
        global score
        HUD.score += 1
        print(HUD.score)
-    
     
     labelPoints = tk.Label(root, text='Score: ' + str(score), font = 90, padx=10, pady=10)
     labelPoints.place(relx=0.0, rely=0.0, anchor='nw')
