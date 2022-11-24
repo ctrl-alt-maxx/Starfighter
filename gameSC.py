@@ -1,6 +1,9 @@
 import tkinter as tk
 from tkinter import ttk ,BOTH, Canvas, Label, PhotoImage,BOTTOM,RIGHT,LEFT, TOP, X, Y
 from tkinter import *
+import sys
+print(sys.executable)
+from PIL import ImageTk, Image
 
 root = tk.Tk()
 """Couleur de fond"""
