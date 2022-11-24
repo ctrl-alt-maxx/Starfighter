@@ -2,9 +2,10 @@
 from functools import partial
 from shutil import move
 import tkinter as tk 
-from tkinter import CENTER, Canvas, Frame, OptionMenu, PhotoImage, Label, StringVar
+from tkinter import ANCHOR, CENTER, Canvas, Frame, OptionMenu, PhotoImage, Label, StringVar
 from PIL import ImageTk, Image
 from pygame import image  
+import c31Geometry2 as c31
 
 
 root = tk.Tk()
@@ -93,18 +94,38 @@ class HUD:
         vie.resize((10,10), Image.ANTIALIAS)
 
 
+class Ovni:
 
-imgOvni = Image.open("ovnii.png")
+    imgOvni = Image.open("ovnii.png")
+    new = imgOvni.resize((60,60), Image.ANTIALIAS)
+    image = ImageTk.PhotoImage(new)
 
-
-
-new = imgOvni.resize((50,50), Image.ANTIALIAS)
-image = ImageTk.PhotoImage(new)
-
-img = canvasBase.create_image(50, 50, image = image)
+    canvasBase.create_image(10,10, anchor="nw", image=image)
 
 
+class Asteroide:
+    imgAsteroide = Image.open("asteroide.png")
+    new = imgAsteroide.resize((60, 60), Image.ANTIALIAS)
+    image = ImageTk.PhotoImage(new)
+    canvasBase.create_image(160, 160, image = image)
 
 
+class Flash:
+    imgBolt = Image.open("bolt.jpeg")
+    new = imgBolt.resize((80,80), Image.ANTIALIAS)
+    image = ImageTk.PhotoImage(new)
+    canvasBase.create_image(250,250, image=image)
+
+class Fuel:
+    imgFuel = Image.open("fuel.png")
+    new = imgFuel.resize((70,70), Image.ANTIALIAS)
+    image = ImageTk.PhotoImage(new)
+    canvasBase.create_image(500,500, image = image)
+
+class Aid:
+    imgAid = Image.open("aid.png")
+    new = imgAid.resize((60,60), Image.ANTIALIAS)
+    image = ImageTk.PhotoImage(new)
+    canvasBase.create_image(600,600, image = image)
 
 root.mainloop()
