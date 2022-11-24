@@ -1,6 +1,5 @@
 
 from functools import partial
-from shutil import move
 import tkinter as tk 
 from tkinter import ANCHOR, CENTER, Canvas, Frame, OptionMenu, PhotoImage, Label, StringVar
 from PIL import ImageTk, Image
@@ -68,21 +67,20 @@ class Vaisseau:
     # Bind the move function 
     canvasBase.bind("<Motion>", move)       ## THIS WORKS!! vaisseau follows the cursor
 
-    pewpew = c31.Oval(canvasBase, c31.Vecteur(150, 100), 15, 5, remplissage="greenyellow")
-    pewpew.draw()
-
-    def pewpewMove(forme):
-        forme.translate(c31.Vecteur(20, 20))
-        forme.draw()
-
-
     
-      
 
-    loop = c31.LoopEvent(canvasBase, partial(pewpewMove, pewpew))
-    loop.start()
+    def pewpew(forme):
+        pewpew = c31.Oval(canvasBase, c31.Vecteur(150, 100), 15, 5, remplissage="greenyellow")
+        pewpew.draw()
 
-    canvasBase.bind("<1>", pewpewMove)
+        #forme.translate(c31.Vecteur(20, 20))
+        #forme.draw()
+
+    canvasBase.bind("<1>", pewpew)
+
+    #loop = c31.LoopEvent(canvasBase, pewpew)
+    #loop.start()
+
 
     #def onclickPewPew():
     #    if (canvasBase.bind("<ButtonPress-2>")):
