@@ -6,6 +6,7 @@ from tkinter import ANCHOR, CENTER, Canvas, Frame, OptionMenu, PhotoImage, Label
 from PIL import ImageTk, Image
 from pygame import image  
 import c31Geometry2 as c31
+from trash import motion
 
 
 root = tk.Tk()
@@ -69,6 +70,33 @@ class Vaisseau:
     # Bind the move function 
     canvasBase.bind("<Motion>", move)       ## THIS WORKS!! vaisseau follows the cursor
 
+    pewpew = c31.Oval(canvasBase, c31.Vecteur(150, 100), 15, 5, remplissage="greenyellow")
+    pewpew.draw()
+
+    def pewpewMove(forme):
+        forme.translate(c31.Vecteur(20, 20))
+        forme.draw()
+        
+    loop = c31.LoopEvent(canvasBase, partial(pewpewMove, pewpew))
+    loop.start()
+
+    canvasBase.bind("<1>", pewpewMove)
+
+    
+
+
+
+
+
+    #def onclickPewPew():
+    #    if (canvasBase.bind("<ButtonPress-2>")):
+    #        Vaisseau.pewpew.draw()
+
+    
+
+
+
+
 # HEADS UP DISPLAY 
 class HUD: 
     # Doit etre capable d'afficher les points courants, niveau de jeu, vie restante, etc.
@@ -127,5 +155,7 @@ class Aid:
     new = imgAid.resize((60,60), Image.ANTIALIAS)
     image = ImageTk.PhotoImage(new)
     canvasBase.create_image(600,600, image = image)
+
+
 
 root.mainloop()
