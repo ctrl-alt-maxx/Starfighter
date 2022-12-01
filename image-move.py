@@ -18,18 +18,21 @@ canvas.pack(pady=20)
 # Add Images to Canvas widget
 # image = ImageTk.PhotoImage(Image.open('asteroide.png'))
 # img = canvas.create_image(0, 120, anchor=NW, image=image)
-item = []
+
+# CREATION DU TABLEAU
+item = [""] * 10
+# 2 OBJETS RANDOM VONT TOMBER 
 for i in range(2):
    num = random.randrange(0,34)
    if num <= 10:
       item[i] = ob.Objet.ovni
-   elif num >= 11 or num <= 15:
+   elif num >= 11 and num <= 15:
       item[i] = ob.Objet.fuel
-   elif num >= 16 or num <= 20:
+   elif num >= 16 and num <= 20:
       item[i] = ob.Objet.bolt
-   elif num >= 21 or num <= 30:
+   elif num >= 21 and num <= 30:
       item[i] = ob.Objet.asteroid
-   elif num >= 31 or num <= 33:
+   elif num >= 31 and num <= 33:
       item[i] = ob.Objet.aid  
 
 # Define a function to allow the image to move within the canvas
