@@ -4,7 +4,7 @@ from shutil import move
 import tkinter as tk 
 from tkinter import ANCHOR, CENTER, W, Canvas, Frame, OptionMenu, PhotoImage, Label, StringVar
 from PIL import ImageTk, Image
-from pygame import image  
+from pygame import image 
 
 
 root = tk.Tk()
