@@ -19,6 +19,10 @@ canvas.pack(pady=20)
 # image = ImageTk.PhotoImage(Image.open('asteroide.png'))
 # img = canvas.create_image(0, 120, anchor=NW, image=image)
 
+column = [""] * 7
+for i in range(7):
+   column[i] = random.randrange(0, 601)
+
 # CREATION DU TABLEAU
 item = [""] * 10
 # 2 OBJETS RANDOM VONT TOMBER 
@@ -58,8 +62,8 @@ def move2(root, e):
 
 #win.after(5, partial(move, win, (240, -100)))
 def moving():
-   win.after(5, partial(move, win, (240, -100)))
-   win.after(5, partial(move2, win, (350, -100)))
+   win.after(5, partial(move, win, (column[0], -50)))
+   win.after(5, partial(move2, win, (column[1], -100)))
    
 # move(win, (240, -100))
 # move2(win, (200, -100))
