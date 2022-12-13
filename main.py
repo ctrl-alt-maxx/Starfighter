@@ -86,7 +86,22 @@ class Vaisseau:
     #    if (canvasBase.bind("<ButtonPress-2>")):
     #        Vaisseau.pewpew.draw()
 
-    
+# SOOTING LASER IN PROJECTILES 
+
+
+laserImg = PhotoImage(file="laser.png");
+laserImg.image = laserImg
+
+def shoot(event):
+    global laser
+    vaiseauB = canvasBase.bbox(Vaisseau.imageVaisseau);
+    clR = (vaiseauB[0] + vaiseauB[2]) / 4
+    ctB = (vaiseauB[1] + vaiseauB[3]) / 4
+    laser = canvasBase.create_image(clR, ctB, image=laserImg);
+
+
+canvasBase.bind_all("<1>", shoot);
+
 # HEADS UP DISPLAY 
 class HUD: 
     # Doit etre capable d'afficher les points courants, niveau de jeu, vie restante, etc.
