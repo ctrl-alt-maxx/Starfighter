@@ -1,5 +1,6 @@
 
 from functools import partial
+from shutil import move
 import tkinter as tk 
 from tkinter import ANCHOR, CENTER, Canvas, Frame, OptionMenu, PhotoImage, Label, StringVar
 from PIL import ImageTk, Image
@@ -33,8 +34,6 @@ class Vaisseau:
     resized_image = imageVaisseau.resize((50,50), Image.ANTIALIAS)
     new_image = ImageTk.PhotoImage(resized_image)
 
-    #img = canvasBase.create_image(40, 40, image=new_image)
-
     def left(e) :
         x = -20
         y = 0
@@ -62,50 +61,64 @@ class Vaisseau:
         image = ImageTk.PhotoImage(new)
         
         img = canvasBase.create_image(e.x, e.y, image = image)
-        
+        Vaisseau.vaisseauEdgeReached()
 
     # Bind the move function 
     canvasBase.bind("<Motion>", move)       ## THIS WORKS!! vaisseau follows the cursor
+        
 
-    
+    # SOOTING LASER IN PROJECTILES 
+    imageLaser = Image.open("laser1.png");
+    testLaser = ImageTk.PhotoImage(imageLaser);
 
-    def pewpew(forme):
-        pewpew = c31.Oval(canvasBase, c31.Vecteur(150, 100), 15, 5, remplissage="greenyellow")
-        pewpew.draw()
+    # Resize the image using resized method 
+    resized_imgLaser = imageLaser.resize((10, 50), Image.ANTIALIAS);
+    new_imgLaser = ImageTk.PhotoImage(resized_imgLaser);
 
-        #forme.translate(c31.Vecteur(20, 20))
-        #forme.draw()
+    def moveLaser():
+        global laser, laserLoop
+        canvasBase.move(laser, 0, -10);
+        laserLoop = root.after(10, Vaisseau.moveLaser)
 
-    canvasBase.bind("<1>", pewpew)
+    def shoot(event):
+        global laser, laserLoop
+        try:
+            root.after_cancel(laserLoop)
+            canvasBase.delete(laser)
+            laser = canvasBase.create_image(event.x, event.y, image=Vaisseau.new_imgLaser);
+            Vaisseau.moveLaser()
+        except NameError:
+            laser = canvasBase.create_image(event.x, event.y, image=Vaisseau.new_imgLaser);
+            Vaisseau.moveLaser()
 
-    #loop = c31.LoopEvent(canvasBase, pewpew)
-    #loop.start()
+    canvasBase.bind_all("<1>", shoot);
 
+    def vaisseauEdgeReached():
+        shipBoundary = canvasBase.bbox(Vaisseau)
+        shipLeft = shipBoundary[0]
+        shipRight = shipBoundary[2]
+        shipTop = shipBoundary[1]
+        shipBottom = shipBoundary[3]
 
-    #def onclickPewPew():
-    #    if (canvasBase.bind("<ButtonPress-2>")):
-    #        Vaisseau.pewpew.draw()
+        if shipLeft < 0:
+            canvasBase.move(Vaisseau, 10, 0)
+        elif shipTop < 0:
+            canvasBase.move(Vaisseau, 0, 10)
+        
+    # Detecting collision between the ship and the enemies 
+    def collisionDetection():
+        # Ship boundary
+        shipB = canvasBase.bbox(Vaisseau)
 
-# SOOTING LASER IN PROJECTILES 
+        # Enemy boundary (Ovni)
+        ovB = canvasBase.bbox(Ovni)
+        if ovB[0] < shipB[2] < ovB[2] and ovB[1] < shipB[1] < ovB[3]:
+            canvasBase.move(Ovni, 50, 50)
 
-
-laserImg = PhotoImage(file="laser.png");
-laserImg.image = laserImg
-
-def shoot(event):
-    global laser
-    vaiseauB = canvasBase.bbox(Vaisseau.imageVaisseau);
-    clR = (vaiseauB[0] + vaiseauB[2]) / 4
-    ctB = (vaiseauB[1] + vaiseauB[3]) / 4
-    laser = canvasBase.create_image(clR, ctB, image=laserImg);
-
-
-canvasBase.bind_all("<1>", shoot);
 
 # HEADS UP DISPLAY 
 class HUD: 
     # Doit etre capable d'afficher les points courants, niveau de jeu, vie restante, etc.
- 
     score = 0
 
     def scoreCounter(): 
@@ -132,7 +145,7 @@ class Ovni:
     new = imgOvni.resize((60,60), Image.ANTIALIAS)
     image = ImageTk.PhotoImage(new)
 
-    canvasBase.create_image(10,10, anchor="nw", image=image)
+    canvasBase.create_image(100, 200, anchor="nw", image=image)
 
 
 class Asteroide:
@@ -159,7 +172,6 @@ class Aid:
     new = imgAid.resize((60,60), Image.ANTIALIAS)
     image = ImageTk.PhotoImage(new)
     canvasBase.create_image(600,600, image = image)
-
 
 
 root.mainloop()
