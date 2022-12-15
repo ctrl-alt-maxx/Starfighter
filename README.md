@@ -65,6 +65,11 @@ On initialise les variables suivantes:
 - *imageVaisseau* : l'image du vaisseau
 - *new_image* : l'image du vaisseau redimensionnée
 #### Fonctions
+left(e) : permet de déplacer le vaisseau vers la gauche
+right(e) : permet de déplacer le vaisseau vers la droite
+upe() : permet de déplacer le vaisseau vers le haut
+down(e) : permet de déplacer le vaisseau vers le bas
+
 move(event) : permet de déplacer le vaisseau en fonction du mouvement de la souris
 ```python
  def move(e):
@@ -78,6 +83,25 @@ move(event) : permet de déplacer le vaisseau en fonction du mouvement de la sou
 # Bind the move function 
 canvasBase.bind("<Motion>", move) 
 ```
+collision() : permet de détecter la collision entre le vaisseau et un astéroïde
+```python
+def collision(objet):
+        sb = canvasBase.bbox(Vaisseau.new_image)
+        eb = canvasBase.bbox(objet)
+        if eb[0] < sb[2] < eb[2] and eb[1] < sb[1] < eb[3]:
+            canvasBase.move(objet, 25, -25)
+            print("CONTACT BOTTOM-LEFT")
+        elif eb[2] > sb[0] > eb[0] and eb[1] < sb[1] < eb[3]:
+            canvasBase.move(objet, -25, -25)
+            print("CONTACT BOTTOM-RIGHT")
+        elif sb[1] < eb[1] < sb[3] and eb[0] < sb[2] < eb[2]:
+            canvasBase.move(objet, 25, 25)
+            print("CONTACT TOP-RIGHT")
+        elif sb[1] < eb[1] < sb[3] and sb[0] < eb[2] < sb[2]:
+            canvasBase.move(objet, -25, 25)
+            print("CONTACT TOP-LEFT")
+```	
+### Classe Laser
 moveLaser() : permet de déplacer le laser en fonction du mouvement du vaisseau
 ```python
   def moveLaser():
@@ -100,17 +124,5 @@ moveLaser() : permet de déplacer le laser en fonction du mouvement du vaisseau
 
     canvasBase.bind_all("<1>", shoot);
 ```
-vaisseauEdgeReached() : permet de vérifier si le vaisseau est au bord de l'écran
-```python
- def vaisseauEdgeReached():
-        shipBoundary = canvasBase.bbox(Vaisseau)
-        shipLeft = shipBoundary[0]
-        shipRight = shipBoundary[2]
-        shipTop = shipBoundary[1]
-        shipBottom = shipBoundary[3]
 
-        if shipLeft < 0:
-            canvasBase.move(Vaisseau, 10, 0)
-        elif shipTop < 0:
-            canvasBase.move(Vaisseau, 0, 10)
-```	
+
