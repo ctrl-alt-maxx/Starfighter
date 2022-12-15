@@ -1,5 +1,5 @@
-
 from functools import partial
+from hashlib import new
 from shutil import move
 import tkinter as tk 
 from tkinter import ANCHOR, CENTER, Canvas, Frame, OptionMenu, PhotoImage, Label, StringVar
@@ -32,26 +32,6 @@ class Vaisseau:
     #Resize the Image using resize method
     resized_image = imageVaisseau.resize((50,50), Image.ANTIALIAS)
     new_image = ImageTk.PhotoImage(resized_image)
-
-    def left(e) :
-        x = -20
-        y = 0
-        canvasBase.move(Vaisseau.img, x, y)
-
-    def right(e):
-        x = 20
-        y = 0
-        canvasBase.move(Vaisseau.img, x, y)
-
-    def up(e):
-        x = 0
-        y = -20
-        canvasBase.move(Vaisseau.img, x, y)
-    
-    def down(e):
-        x = 0
-        y = 20
-        canvasBase.move(Vaisseau.img, x, y)
 
     # Define a function to allow the image to move within the canvas 
     def move(e):
@@ -156,9 +136,7 @@ class Ovni:
     image = ImageTk.PhotoImage(new)
 
     canvasBase.create_image(100, 200, anchor="nw", image=image)
-    #Vaisseau.collision(image)
-
-    
+    # Vaisseau.collision(image)
 
 
 class Asteroide:
