@@ -78,6 +78,8 @@ class Vaisseau:
         global laser, laserLoop
         canvasBase.move(laser, 0, -10);
         laserLoop = root.after(10, Vaisseau.moveLaser)
+        
+        
 
     def shoot(event):
         global laser, laserLoop
@@ -92,27 +94,21 @@ class Vaisseau:
 
     canvasBase.bind_all("<1>", shoot);
 
-    def vaisseauEdgeReached():
-        shipBoundary = canvasBase.bbox(Vaisseau)
-        shipLeft = shipBoundary[0]
-        shipRight = shipBoundary[2]
-        shipTop = shipBoundary[1]
-        shipBottom = shipBoundary[3]
-
-        if shipLeft < 0:
-            canvasBase.move(Vaisseau, 10, 0)
-        elif shipTop < 0:
-            canvasBase.move(Vaisseau, 0, 10)
-        
-    # Detecting collision between the ship and the enemies 
-    def collisionDetection():
-        # Ship boundary
-        shipB = canvasBase.bbox(Vaisseau)
-
-        # Enemy boundary (Ovni)
-        ovB = canvasBase.bbox(Ovni)
-        if ovB[0] < shipB[2] < ovB[2] and ovB[1] < shipB[1] < ovB[3]:
-            canvasBase.move(Ovni, 50, 50)
+    def collision(objet):
+        sb = canvasBase.bbox(Vaisseau.new_image)
+        eb = canvasBase.bbox(objet)
+        if eb[0] < sb[2] < eb[2] and eb[1] < sb[1] < eb[3]:
+            canvasBase.move(objet, 25, -25)
+            print("CONTACT BOTTOM-LEFT")
+        elif eb[2] > sb[0] > eb[0] and eb[1] < sb[1] < eb[3]:
+            canvasBase.move(objet, -25, -25)
+            print("CONTACT BOTTOM-RIGHT")
+        elif sb[1] < eb[1] < sb[3] and eb[0] < sb[2] < eb[2]:
+            canvasBase.move(objet, 25, 25)
+            print("CONTACT TOP-RIGHT")
+        elif sb[1] < eb[1] < sb[3] and sb[0] < eb[2] < sb[2]:
+            canvasBase.move(objet, -25, 25)
+            print("CONTACT TOP-LEFT")
 
 
 # HEADS UP DISPLAY 
@@ -145,6 +141,9 @@ class Ovni:
     image = ImageTk.PhotoImage(new)
 
     canvasBase.create_image(100, 200, anchor="nw", image=image)
+    #Vaisseau.collision(image)
+
+    
 
 
 class Asteroide:
