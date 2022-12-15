@@ -40,16 +40,18 @@ on appelle la méthode *quitGame()* qui va détruire la fenêtre actuelle et fer
 def quitGame():
     root.destroy()
 ```     	  
-     	 
+---    	 
     
 ## Règles
 ### *Rules.py*
 Affiche les règles du jeu
 
+---
 ## Menu des Scores
 ### *Leaderboard.py*
 Affiche les scores des joueurs
 
+---
 ## Jeu
 ### *Main.py*
 #### Initialisation
@@ -57,8 +59,13 @@ On initialise les variables suivantes:
 - *root* : la fenêtre du jeu
 - *canvas* : le canvas sur lequel on va dessiner
 - *frame* : la frame qui contient le canvas
+- *image* : l'image du vaisseau
+### Classe Vaisseau
+#### Attributs
+- *imageVaisseau* : l'image du vaisseau
+- *new_image* : l'image du vaisseau redimensionnée
 #### Fonctions
-##### move(event) : permet de déplacer le vaisseau en fonction du mouvement de la souris
+move(event) : permet de déplacer le vaisseau en fonction du mouvement de la souris
 ```python
  def move(e):
         global image
@@ -71,7 +78,7 @@ On initialise les variables suivantes:
 # Bind the move function 
 canvasBase.bind("<Motion>", move) 
 ```
-##### moveLaser() : permet de déplacer le laser en fonction du mouvement du vaisseau
+moveLaser() : permet de déplacer le laser en fonction du mouvement du vaisseau
 ```python
   def moveLaser():
         global laser, laserLoop
@@ -93,7 +100,7 @@ canvasBase.bind("<Motion>", move)
 
     canvasBase.bind_all("<1>", shoot);
 ```
-##### vaisseauEdgeReached() : permet de vérifier si le vaisseau est au bord de l'écran
+vaisseauEdgeReached() : permet de vérifier si le vaisseau est au bord de l'écran
 ```python
  def vaisseauEdgeReached():
         shipBoundary = canvasBase.bbox(Vaisseau)
