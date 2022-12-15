@@ -65,35 +65,6 @@ class Vaisseau:
     # Bind the move function 
     canvasBase.bind("<Motion>", move)       ## THIS WORKS!! vaisseau follows the cursor
         
-
-    # SOOTING LASER IN PROJECTILES 
-    imageLaser = Image.open("laser1.png");
-    testLaser = ImageTk.PhotoImage(imageLaser);
-
-    # Resize the image using resized method 
-    resized_imgLaser = imageLaser.resize((10, 50), Image.ANTIALIAS);
-    new_imgLaser = ImageTk.PhotoImage(resized_imgLaser);
-
-    def moveLaser():
-        global laser, laserLoop
-        canvasBase.move(laser, 0, -10);
-        laserLoop = root.after(10, Vaisseau.moveLaser)
-        
-        
-
-    def shoot(event):
-        global laser, laserLoop
-        try:
-            root.after_cancel(laserLoop)
-            canvasBase.delete(laser)
-            laser = canvasBase.create_image(event.x, event.y, image=Vaisseau.new_imgLaser);
-            Vaisseau.moveLaser()
-        except NameError:
-            laser = canvasBase.create_image(event.x, event.y, image=Vaisseau.new_imgLaser);
-            Vaisseau.moveLaser()
-
-    canvasBase.bind_all("<1>", shoot);
-
     def collision(objet):
         sb = canvasBase.bbox(Vaisseau.new_image)
         eb = canvasBase.bbox(objet)
@@ -110,6 +81,32 @@ class Vaisseau:
             canvasBase.move(objet, -25, 25)
             print("CONTACT TOP-LEFT")
 
+class Laser:
+    # SOOTING LASER IN PROJECTILES 
+    imageLaser = Image.open("laser1.png");
+    testLaser = ImageTk.PhotoImage(imageLaser);
+
+    # Resize the image using resized method 
+    resized_imgLaser = imageLaser.resize((10, 50), Image.ANTIALIAS);
+    new_imgLaser = ImageTk.PhotoImage(resized_imgLaser);
+
+    def moveLaser():
+        global laser, laserLoop
+        canvasBase.move(laser, 0, -10);
+        laserLoop = root.after(10, Laser.moveLaser)
+        
+    def shoot(event):
+        global laser, laserLoop
+        try:
+            root.after_cancel(laserLoop)
+            canvasBase.delete(laser)
+            laser = canvasBase.create_image(event.x, event.y, image=Laser.new_imgLaser);
+            Laser.moveLaser()
+        except NameError:
+            laser = canvasBase.create_image(event.x, event.y, image=Laser.new_imgLaser);
+            Laser.moveLaser()
+
+    canvasBase.bind_all("<1>", shoot);
 
 # HEADS UP DISPLAY 
 class HUD: 
@@ -132,6 +129,24 @@ class HUD:
     def vieRestante():
         vie = Image.open("lives.png")
         vie.resize((10,10), Image.ANTIALIAS)
+
+class HealthBar(object):
+    def __init__(self, canvas = None, x = 0, y = 0, initialHealth = 100, maxHealth = 100):
+        self.canvas = canvas
+        self.x = x
+        self.y = y
+
+        self.width = 100
+        self.height = 5
+
+        self.xvel = 0
+        self.yvel = 0
+
+        self.health = initialHealth
+
+        self.barOutline = self.canvas.create_rectangle(self.x, self.y, self.x + self.width, self.y + self.height, outline = 'white')
+
+        self.barFill = self.canvas.create_rectangle(self.x, self.y, self.x + self.health, self.y + self.height, outline = 'white', fill = 'red')
 
 
 class Ovni:
