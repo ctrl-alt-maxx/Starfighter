@@ -1,4 +1,10 @@
 # Starfighter
+>## Auteurs
+>life
+## Description
+Starfighter est un jeu de tir dans l'espace. Le joueur contrôle un vaisseau qui doit tirer sur des astéroïdes qui apparaissent aléatoirement. Le joueur a 3 vies. Le jeu se termine quand le joueur n'a plus de vie. Le score du joueur est le nombre d'astéroïdes qu'il a détruit. Le joueur peut sauvegarder son score dans un fichier csv.
+
+
 ---
 ### Avant l'ouverte du jeu
 #### Installation de PILLOW
@@ -56,7 +62,9 @@ def returnBack():
 ## Menu des Scores
 ### *Leaderboard.py*
 Affiche les scores des joueurs
+
 a un bouton qui permet de revenir au menu principal
+
 a un bouton qui permet de classer les scores
 
 
