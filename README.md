@@ -16,7 +16,8 @@ la commande suivante dans le terminal permet d'installer PILLOW qui est une libr
 ---
 ## Page d'accueil
 ### *Menu.py*
-    
+### Classe StartScreen
+cette classe permet de créer la fenêtre du menu principal    
 ### Commencer une partie
 on appelle la méthode *startGame()* qui va détruire la fenêtre actuelle et ouvrir la fenêtre du jeu
 <details>
@@ -77,6 +78,8 @@ def quitGame():
 ## Règles
 ### *Rules.py*
 Affiche les règles du jeu
+### Classe RulesScreen
+cette classe permet de créer la fenêtre des règles
 
 a un bouton qui permet de revenir au menu principal
 <details>
@@ -94,6 +97,8 @@ def returnBack():
 ## Menu des Scores
 ### *Leaderboard.py*
 Affiche les scores des joueurs
+### Classe Trier 
+cette classe permet de trier les scores
 
 a un bouton qui permet de revenir au menu principal
 
@@ -221,10 +226,6 @@ scoreCounter() : permet d'incrémenter le score du joueur
 
 </details>
 
-### Classe HealthBar
-la barre de vie du vaisseau
-#### Attributs 
-- *health* : la vie du vaisseau
 ### Classe Ovni
 la classe Ovni permet de créer un ovni
 #### Attributs
