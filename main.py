@@ -168,7 +168,8 @@ def move(root, e):
    new = imgItem.resize((60, 60), Image.ANTIALIAS)
    image1 = ImageTk.PhotoImage(new)
    img = canvasBase.create_image(e[0], e[1], image=image1)
-   root.after(50, partial(move, root, (e[0] - 0, e[1] + speed[0]))) 
+   root.after(50, partial(move, root, (e[0] - 0, e[1] + speed[0])))
+   collision(img)
 
 
 def move2(root, e):
@@ -178,6 +179,7 @@ def move2(root, e):
    image2 = ImageTk.PhotoImage(new)
    img = canvasBase.create_image(e[0], e[1], image=image2)
    root.after(50, partial(move2, root, (e[0] - 0, e[1] + speed[1])))
+   collision(img)
 
 def move3(root, e):
    global image3
@@ -186,6 +188,7 @@ def move3(root, e):
    image3 = ImageTk.PhotoImage(new)
    img = canvasBase.create_image(e[0], e[1], image=image3)
    root.after(50, partial(move3, root, (e[0] - 0, e[1] + speed[2])))
+   collision(img)
 
 def move4(root, e):
    global image4
@@ -194,6 +197,7 @@ def move4(root, e):
    image4 = ImageTk.PhotoImage(new)
    img = canvasBase.create_image(e[0], e[1], image=image4)
    root.after(50, partial(move4, root, (e[0] - 0, e[1] + speed[3])))
+   collision(img)
 
 def move5(root, e):
    global image5
@@ -202,6 +206,7 @@ def move5(root, e):
    image5 = ImageTk.PhotoImage(new)
    img = canvasBase.create_image(e[0], e[1], image=image5)
    root.after(50, partial(move5, root, (e[0] - 0, e[1] + speed[4])))
+   collision(img)
 
 def moving():
    root.after(5, partial(move, root, (column[0], -start[0])))
@@ -210,14 +215,6 @@ def moving():
    root.after(5, partial(move4, root, (column[3], -start[3])))
    root.after(5, partial(move5, root, (column[4], -start[4])))
 
-# count = 0
-# for i in range(3):
-#    for x in range(5):
-      # column = random.randrange(0, 601)
-      # move(root, (column, -100))
-   # count += 1
-   # root.mainloop()
-# move2(root, (200, -100))
 moving()
 
 
