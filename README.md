@@ -101,6 +101,7 @@ a un bouton qui permet de classer les scores
 
 
 ---
+
 ## Jeu
 ### *Main.py*
 #### Initialisation
@@ -109,7 +110,9 @@ On initialise les variables suivantes:
 - *canvas* : le canvas sur lequel on va dessiner
 - *frame* : la frame qui contient le canvas
 - *image* : l'image du vaisseau
+- 
 ### Classe Vaisseau
+
 #### Attributs
 - *imageVaisseau* : l'image du vaisseau
 - *new_image* : l'image du vaisseau redimensionnée
