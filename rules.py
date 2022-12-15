@@ -43,7 +43,7 @@ class RulesScreen:
         self.label2.place( x= 50, y= 100)
         self.label4.place( x= 50, y= 120)
         
-        self.label3 = tk.Label(self.master, text="Règle 2 : Have fun bitch! ", font=("Terminal", 13), bg="black", fg="white")
+        self.label3 = tk.Label(self.master, text="Règle 2 : Seulement tirer un laser à la fois !!", font=("Terminal", 13), bg="black", fg="white")
         self.label3.place( x= 50, y= 160)
         
         self.button = tk.Button(self.master, text="Retour", command=returnBack, font=("Terminal",20), bg="white")
