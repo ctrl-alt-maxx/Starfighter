@@ -16,6 +16,8 @@ root.title("STARFIGHTER")
 root.geometry("650x750")
 
 def startGame():
+    """_summary_ : Cette fonction permet de lancer le jeu
+    """
     root.destroy()
     #import game
     import main
@@ -23,15 +25,19 @@ def startGame():
 
 
 def startRules():
+    """_summary_ : Cette fonction permet d'afficher les règles du jeu
+    """
     root.destroy()
     import rules
     
 def startLeaderboard():
+    """_summary_ : Cette fonction permet d'afficher le leaderboard"""
     root.destroy()
     import leaderboard
 
 class StartScreen: 
-    
+    """_summary_ : Cette classe permet d'afficher le menu principal
+    """
     def __init__(self, master):
         self.master = master
         
@@ -60,6 +66,8 @@ class StartScreen:
     
           
     def start(self):
+        """_summary_ : Cette fonction permet de lancer le menu principal
+        """
         self.master.mainloop()
 
         

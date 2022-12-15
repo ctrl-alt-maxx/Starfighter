@@ -19,20 +19,34 @@ la commande suivante dans le terminal permet d'installer PILLOW qui est une libr
     
 ### Commencer une partie
 on appelle la méthode *startGame()* qui va détruire la fenêtre actuelle et ouvrir la fenêtre du jeu
+<details>
+  <summary>Voir le code</summary>
+    
+#### code:
 
 ```python
-def startGame():
+
+     def startGame():
     root.destroy()
-    import main
+     import main
 ```
+</details>
+
 
 ### Ouvrir les Règles
 on appelle la méthode *startRules()* qui va détruire la fenêtre actuelle et ouvrir la fenêtre des règles
+<details>
+  <summary>Voir le code</summary>
+    
+#### code:
+
 ```python
 def startRules():
      root.destroy()
      import rules
 ``` 
+</details>
+
 ### Ouvrir le Menu des Scores
 on appelle la méthode *startLeaderboard()* qui va détruire la fenêtre actuelle et ouvrir la fenêtre des scores
 ``` python
