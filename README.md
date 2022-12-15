@@ -124,7 +124,7 @@ On initialise les variables suivantes:
 #### Fonctions
 left(e) : permet de déplacer le vaisseau vers la gauche
 right(e) : permet de déplacer le vaisseau vers la droite
-upe() : permet de déplacer le vaisseau vers le haut
+up(e) : permet de déplacer le vaisseau vers le haut
 down(e) : permet de déplacer le vaisseau vers le bas
 
 move(event) : permet de déplacer le vaisseau en fonction du mouvement de la souris
@@ -225,27 +225,4 @@ scoreCounter() : permet d'incrémenter le score du joueur
 ```
 
 </details>
-
-### Classe Ovni
-la classe Ovni permet de créer un ovni
-#### Attributs
-- *imgOvni* : l'image de l'ovni
-- canvasBase : le canvas sur lequel on va dessiner
-### Classe Astéroïde
-la classe Astéroïde permet de créer un astéroïde
-#### Attributs
-- *imgAsteroide* : l'image de l'astéroïde
-- canvasBase : le canvas sur lequel on va dessiner
-### Classe Flash
-la classe Flash permet de créer un objet flash
-ce dernier permet d'accéléré le vaisseau
-#### Attributs
-- *imgBolt* : l'image du flash
-- cansvasBase : le canvas sur lequel on va dessiner
-### Classe Aid
-la classe Aid permet de créer un objet aid
-ce dernier permet de réparer le vaisseau
-#### Attributs
-- *imgAid* : l'image de l'aid
-- canvasBase : le canvas sur lequel on va dessiner
 
