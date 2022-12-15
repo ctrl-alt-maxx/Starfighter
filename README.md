@@ -1,6 +1,6 @@
 # Starfighter
 >## Auteurs
->life
+> Maxime Rabbat, Eddee Charles, Usha Shivannie Sookwa
 ## Description
 Starfighter est un jeu de tir dans l'espace. Le joueur contrôle un vaisseau qui doit tirer sur des astéroïdes qui apparaissent aléatoirement. Le joueur a 3 vies. Le jeu se termine quand le joueur n'a plus de vie. Le score du joueur est le nombre d'astéroïdes qu'il a détruit. Le joueur peut sauvegarder son score dans un fichier csv.
 
