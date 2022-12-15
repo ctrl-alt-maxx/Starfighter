@@ -65,7 +65,23 @@ class Vaisseau:
     # Bind the move function 
     canvasBase.bind("<Motion>", move)       ## THIS WORKS!! vaisseau follows the cursor
         
+    def collision(objet):
+        sb = canvasBase.bbox(Vaisseau.new_image)
+        eb = canvasBase.bbox(objet)
+        if eb[0] < sb[2] < eb[2] and eb[1] < sb[1] < eb[3]:
+            canvasBase.move(objet, 25, -25)
+            print("CONTACT BOTTOM-LEFT")
+        elif eb[2] > sb[0] > eb[0] and eb[1] < sb[1] < eb[3]:
+            canvasBase.move(objet, -25, -25)
+            print("CONTACT BOTTOM-RIGHT")
+        elif sb[1] < eb[1] < sb[3] and eb[0] < sb[2] < eb[2]:
+            canvasBase.move(objet, 25, 25)
+            print("CONTACT TOP-RIGHT")
+        elif sb[1] < eb[1] < sb[3] and sb[0] < eb[2] < sb[2]:
+            canvasBase.move(objet, -25, 25)
+            print("CONTACT TOP-LEFT")
 
+class Laser:
     # SOOTING LASER IN PROJECTILES 
     imageLaser = Image.open("laser1.png");
     testLaser = ImageTk.PhotoImage(imageLaser);
@@ -77,43 +93,20 @@ class Vaisseau:
     def moveLaser():
         global laser, laserLoop
         canvasBase.move(laser, 0, -10);
-        laserLoop = root.after(10, Vaisseau.moveLaser)
-
+        laserLoop = root.after(10, Laser.moveLaser)
+        
     def shoot(event):
         global laser, laserLoop
         try:
             root.after_cancel(laserLoop)
             canvasBase.delete(laser)
-            laser = canvasBase.create_image(event.x, event.y, image=Vaisseau.new_imgLaser);
-            Vaisseau.moveLaser()
+            laser = canvasBase.create_image(event.x, event.y, image=Laser.new_imgLaser);
+            Laser.moveLaser()
         except NameError:
-            laser = canvasBase.create_image(event.x, event.y, image=Vaisseau.new_imgLaser);
-            Vaisseau.moveLaser()
+            laser = canvasBase.create_image(event.x, event.y, image=Laser.new_imgLaser);
+            Laser.moveLaser()
 
     canvasBase.bind_all("<1>", shoot);
-
-    def vaisseauEdgeReached():
-        shipBoundary = canvasBase.bbox(Vaisseau)
-        shipLeft = shipBoundary[0]
-        shipRight = shipBoundary[2]
-        shipTop = shipBoundary[1]
-        shipBottom = shipBoundary[3]
-
-        if shipLeft < 0:
-            canvasBase.move(Vaisseau, 10, 0)
-        elif shipTop < 0:
-            canvasBase.move(Vaisseau, 0, 10)
-        
-    # Detecting collision between the ship and the enemies 
-    def collisionDetection():
-        # Ship boundary
-        shipB = canvasBase.bbox(Vaisseau)
-
-        # Enemy boundary (Ovni)
-        ovB = canvasBase.bbox(Ovni)
-        if ovB[0] < shipB[2] < ovB[2] and ovB[1] < shipB[1] < ovB[3]:
-            canvasBase.move(Ovni, 50, 50)
-
 
 # HEADS UP DISPLAY 
 class HUD: 
@@ -137,6 +130,24 @@ class HUD:
         vie = Image.open("lives.png")
         vie.resize((10,10), Image.ANTIALIAS)
 
+class HealthBar(object):
+    def __init__(self, canvas = None, x = 0, y = 0, initialHealth = 100, maxHealth = 100):
+        self.canvas = canvas
+        self.x = x
+        self.y = y
+
+        self.width = 100
+        self.height = 5
+
+        self.xvel = 0
+        self.yvel = 0
+
+        self.health = initialHealth
+
+        self.barOutline = self.canvas.create_rectangle(self.x, self.y, self.x + self.width, self.y + self.height, outline = 'white')
+
+        self.barFill = self.canvas.create_rectangle(self.x, self.y, self.x + self.health, self.y + self.height, outline = 'white', fill = 'red')
+
 
 class Ovni:
 
@@ -145,6 +156,9 @@ class Ovni:
     image = ImageTk.PhotoImage(new)
 
     canvasBase.create_image(100, 200, anchor="nw", image=image)
+    #Vaisseau.collision(image)
+
+    
 
 
 class Asteroide:
