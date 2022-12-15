@@ -17,7 +17,10 @@ root.geometry("650x750")
 
 def startGame():
     root.destroy()
-    import game
+    #import game
+    import main
+    # import main instead of game to access Usha - main.py file 
+
 
 def startRules():
     root.destroy()
