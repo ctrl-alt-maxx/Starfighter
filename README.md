@@ -49,17 +49,29 @@ def startRules():
 
 ### Ouvrir le Menu des Scores
 on appelle la méthode *startLeaderboard()* qui va détruire la fenêtre actuelle et ouvrir la fenêtre des scores
+<details>
+  <summary>Voir le code</summary>
+    
+#### code:
+
 ``` python
 def startLeaderboard():
     root.destroy()
     import leaderboard
-```       
+```      
+</details>
+
 ### Quitter le jeu
 on appelle la méthode *quitGame()* qui va détruire la fenêtre actuelle et fermer le jeu
+<details>
+  <summary>Voir le code</summary>
+
+#### code:
 ```python
 def quitGame():
     root.destroy()
-```     	  
+```   
+</details>  	  
 ---    	 
     
 ## Règles
