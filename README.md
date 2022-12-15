@@ -46,10 +46,19 @@ def quitGame():
 ### *Rules.py*
 Affiche les règles du jeu
 
+a un bouton qui permet de revenir au menu principal
+```python
+def returnBack():
+    root.destroy()
+    import menu
+```
 ---
 ## Menu des Scores
 ### *Leaderboard.py*
 Affiche les scores des joueurs
+a un bouton qui permet de revenir au menu principal
+a un bouton qui permet de classer les scores
+
 
 ---
 ## Jeu
@@ -154,16 +163,13 @@ la classe Astéroïde permet de créer un astéroïde
 - canvasBase : le canvas sur lequel on va dessiner
 ### Classe Flash
 la classe Flash permet de créer un objet flash
+ce dernier permet d'accéléré le vaisseau
 #### Attributs
 - *imgBolt* : l'image du flash
 - cansvasBase : le canvas sur lequel on va dessiner
-### Classe Fuel
-la classe Fuel permet de créer un objet fuel
-#### Attributs
-- *imgFuel* : l'image du fuel
-- canvasBase : le canvas sur lequel on va dessiner
 ### Classe Aid
 la classe Aid permet de créer un objet aid
+ce dernier permet de réparer le vaisseau
 #### Attributs
 - *imgAid* : l'image de l'aid
 - canvasBase : le canvas sur lequel on va dessiner
