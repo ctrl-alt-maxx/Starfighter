@@ -19,7 +19,7 @@ root.bind('<Motion>',callback)
 
 def returnBack():
     root.destroy()
-    import gameSC
+    import menu
 # label = Label(root, text="STARFIGHTER", font=("Arial", 20), bg="black", fg="white")
 # label.place( x= 250, y= 60)
 

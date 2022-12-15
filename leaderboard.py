@@ -9,7 +9,8 @@ root.title("Leaderboard")
 root.geometry("1500x1500")
 
 def returnBack():
-    import gameSC
+    root.destroy()
+    import menu
 
 # name = "Marc"
 # pts = random.randrange(100,1000)
