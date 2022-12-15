@@ -3,7 +3,7 @@ from tkinter import ttk ,BOTH, Canvas, Label, PhotoImage,BOTTOM,RIGHT,LEFT, TOP,
 from tkinter import *
 import sys
 print(sys.executable)
-from PIL import ImageTk, Image
+#from PIL import ImageTk, Image
 
 root = tk.Tk()
 """Couleur de fond"""
