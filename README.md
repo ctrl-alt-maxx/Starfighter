@@ -79,11 +79,17 @@ def quitGame():
 Affiche les règles du jeu
 
 a un bouton qui permet de revenir au menu principal
+<details>
+  <summary>Voir le code</summary>
+
+#### code:
 ```python
 def returnBack():
     root.destroy()
     import menu
 ```
+</details>
+
 ---
 ## Menu des Scores
 ### *Leaderboard.py*
@@ -114,6 +120,10 @@ upe() : permet de déplacer le vaisseau vers le haut
 down(e) : permet de déplacer le vaisseau vers le bas
 
 move(event) : permet de déplacer le vaisseau en fonction du mouvement de la souris
+<details>
+  <summary>Voir le code</summary>
+
+#### code:
 ```python
  def move(e):
         global image
@@ -126,8 +136,14 @@ move(event) : permet de déplacer le vaisseau en fonction du mouvement de la sou
 # Bind the move function 
 canvasBase.bind("<Motion>", move) 
 ```
+</details>
+
 ### Collision
 collision() : permet de détecter la collision entre le vaisseau et un astéroïde
+<details>
+  <summary>Voir le code</summary>
+
+#### code:
 ```python
 def collision(objet):
         sb = canvasBase.bbox(Vaisseau.new_image)
@@ -145,15 +161,27 @@ def collision(objet):
             canvasBase.move(objet, -25, 25)
             print("CONTACT TOP-LEFT")
 ```	
+</details>
+
 ### Classe Laser
 moveLaser() : permet de déplacer le laser en fonction du mouvement du vaisseau
+<details>
+  <summary>Voir le code</summary>
+
+#### code:
 ```python
   def moveLaser():
         global laser, laserLoop
         canvasBase.move(laser, 0, -10);
         laserLoop = root.after(10, Vaisseau.moveLaser)
 ```
+</details>
+
 ##### shoot() : permet de tirer un laser
+<details>
+  <summary>Voir le code</summary>
+
+#### code:
 ```python
  def shoot(event):
         global laser, laserLoop
@@ -168,6 +196,8 @@ moveLaser() : permet de déplacer le laser en fonction du mouvement du vaisseau
 
     canvasBase.bind_all("<1>", shoot);
 ```
+</details>
+
 ### Classe HUD
 le HUD est la barre de vie du vaisseau
 #### Attributs
@@ -175,12 +205,19 @@ le HUD est la barre de vie du vaisseau
 - *score* : le score du joueur
 #### Fonctions
 scoreCounter() : permet d'incrémenter le score du joueur
+<details>
+  <summary>Voir le code</summary>
+
+#### code:
 ```python
     def scoreCounter(): 
        global score
        HUD.score += 1
        print(HUD.score)
-```	
+```
+
+</details>
+
 ### Classe HealthBar
 la barre de vie du vaisseau
 #### Attributs 
