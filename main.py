@@ -1,10 +1,12 @@
 from functools import partial
 from hashlib import new
+import random
 from shutil import move
 import tkinter as tk 
 from tkinter import ANCHOR, CENTER, Canvas, Frame, OptionMenu, PhotoImage, Label, StringVar
 from PIL import ImageTk, Image
 import c31Geometry2 as c31
+import Objet as ob      # TO keep
 
 root = tk.Tk()
 
@@ -24,12 +26,15 @@ frame.pack()
 canvasBase = tk.Canvas(root, background="black", width=800, height=1000, highlightthickness=1, highlightbackground="red", relief='ridge')
 canvasBase.pack()
 
+"""
+
+"""
 class Vaisseau:
 
     imageVaisseau = Image.open("vaisseau.png")
     test = ImageTk.PhotoImage(imageVaisseau)
 
-    #Resize the Image using resize method
+    # Re-dimensioné
     resized_image = imageVaisseau.resize((50,50), Image.ANTIALIAS)
     new_image = ImageTk.PhotoImage(resized_image)
 
@@ -40,26 +45,10 @@ class Vaisseau:
         image = ImageTk.PhotoImage(new)
         
         img = canvasBase.create_image(e.x, e.y, image = image)
-        Vaisseau.vaisseauEdgeReached()
 
     # Bind the move function 
     canvasBase.bind("<Motion>", move)       ## THIS WORKS!! vaisseau follows the cursor
         
-    def collision(objet):
-        sb = canvasBase.bbox(Vaisseau.new_image)
-        eb = canvasBase.bbox(objet)
-        if eb[0] < sb[2] < eb[2] and eb[1] < sb[1] < eb[3]:
-            canvasBase.move(objet, 25, -25)
-            print("CONTACT BOTTOM-LEFT")
-        elif eb[2] > sb[0] > eb[0] and eb[1] < sb[1] < eb[3]:
-            canvasBase.move(objet, -25, -25)
-            print("CONTACT BOTTOM-RIGHT")
-        elif sb[1] < eb[1] < sb[3] and eb[0] < sb[2] < eb[2]:
-            canvasBase.move(objet, 25, 25)
-            print("CONTACT TOP-RIGHT")
-        elif sb[1] < eb[1] < sb[3] and sb[0] < eb[2] < sb[2]:
-            canvasBase.move(objet, -25, 25)
-            print("CONTACT TOP-LEFT")
 
 class Laser:
     # SOOTING LASER IN PROJECTILES 
@@ -128,41 +117,108 @@ class HealthBar(object):
 
         self.barFill = self.canvas.create_rectangle(self.x, self.y, self.x + self.health, self.y + self.height, outline = 'white', fill = 'red')
 
+def collision(objet):
+    sb = canvasBase.bbox(Vaisseau)
+    eb = canvasBase.bbox(objet)
+    if eb[0] < sb[2] < eb[2] and eb[1] < sb[1] < eb[3]:
+        canvasBase.move(objet, 25, -25)
+    elif eb[2] > sb[0] > eb[0] and eb[1] < sb[1] < eb[3]:
+        canvasBase.move(objet, -25, -25)
+    elif sb[1] < eb[1] < sb[3] and eb[0] < sb[2] < eb[2]:
+        canvasBase.move(objet, 25, 25)
+    elif sb[1] < eb[1] < sb[3] and sb[0] < eb[2] < sb[2]:
+        canvasBase.move(objet, -25, 25)
 
-class Ovni:
+# CREATION DU TABLEAU DE COLONNE
+column = [""] * 7
+column[0] = random.randrange(0, 101)
+column[1] = random.randrange(100, 201)
+column[2] = random.randrange(200, 301)
+column[3] = random.randrange(300, 401)
+column[4] = random.randrange(400, 501)
+column[5] = random.randrange(500, 601)
 
-    imgOvni = Image.open("ovnii.png")
-    new = imgOvni.resize((60,60), Image.ANTIALIAS)
-    image = ImageTk.PhotoImage(new)
+# CREATION DU TABLEAU DE DEPART
+start = [""] * 10
+for i in range(7):
+   start[i] = random.randrange(0, 100)
+# CREATION DU TABLEAU DE VITESSE (TOMBE VITE OU LENTEMENT)
+speed = [""] * 10
+for i in range(7):
+   speed[i] = random.randrange(5, 11)
 
-    canvasBase.create_image(100, 200, anchor="nw", image=image)
-    # Vaisseau.collision(image)
+# CREATION DU TABLEAU D'IMAGE
+item = [""] * 5
+# 5 OBJETS RANDOM VONT TOMBER 
+for i in range(5):
+   num = random.randrange(0,41)
+   if num <= 25:
+      item[i] = ob.Objet.ovni
+   elif num >= 26 and num <= 30:
+      item[i] = ob.Objet.bolt
+   elif num >= 31 and num <= 37:
+      item[i] = ob.Objet.asteroid
+   elif num >= 38 and num <= 40:
+      item[i] = ob.Objet.aid
+
+# Define a function to allow the image to move within the canvas
+def move(root, e):
+   global image1
+   imgItem = Image.open(item[0])
+   new = imgItem.resize((60, 60), Image.ANTIALIAS)
+   image1 = ImageTk.PhotoImage(new)
+   img = canvasBase.create_image(e[0], e[1], image=image1)
+   root.after(50, partial(move, root, (e[0] - 0, e[1] + speed[0]))) 
 
 
-class Asteroide:
-    imgAsteroide = Image.open("asteroide.png")
-    new = imgAsteroide.resize((60, 60), Image.ANTIALIAS)
-    image = ImageTk.PhotoImage(new)
-    canvasBase.create_image(160, 160, image = image)
+def move2(root, e):
+   global image2
+   imgItem = Image.open(item[1])
+   new = imgItem.resize((60, 60), Image.ANTIALIAS)
+   image2 = ImageTk.PhotoImage(new)
+   img = canvasBase.create_image(e[0], e[1], image=image2)
+   root.after(50, partial(move2, root, (e[0] - 0, e[1] + speed[1])))
 
+def move3(root, e):
+   global image3
+   imgItem = Image.open(item[2])
+   new = imgItem.resize((60, 60), Image.ANTIALIAS)
+   image3 = ImageTk.PhotoImage(new)
+   img = canvasBase.create_image(e[0], e[1], image=image3)
+   root.after(50, partial(move3, root, (e[0] - 0, e[1] + speed[2])))
 
-class Flash:
-    imgBolt = Image.open("bolt.jpeg")
-    new = imgBolt.resize((80,80), Image.ANTIALIAS)
-    image = ImageTk.PhotoImage(new)
-    canvasBase.create_image(250,250, image=image)
+def move4(root, e):
+   global image4
+   imgItem = Image.open(item[3])
+   new = imgItem.resize((60, 60), Image.ANTIALIAS)
+   image4 = ImageTk.PhotoImage(new)
+   img = canvasBase.create_image(e[0], e[1], image=image4)
+   root.after(50, partial(move4, root, (e[0] - 0, e[1] + speed[3])))
 
-class Fuel:
-    imgFuel = Image.open("fuel.png")
-    new = imgFuel.resize((70,70), Image.ANTIALIAS)
-    image = ImageTk.PhotoImage(new)
-    canvasBase.create_image(500,500, image = image)
+def move5(root, e):
+   global image5
+   imgItem = Image.open(item[4])
+   new = imgItem.resize((60, 60), Image.ANTIALIAS)
+   image5 = ImageTk.PhotoImage(new)
+   img = canvasBase.create_image(e[0], e[1], image=image5)
+   root.after(50, partial(move5, root, (e[0] - 0, e[1] + speed[4])))
 
-class Aid:
-    imgAid = Image.open("aid.png")
-    new = imgAid.resize((60,60), Image.ANTIALIAS)
-    image = ImageTk.PhotoImage(new)
-    canvasBase.create_image(600,600, image = image)
+def moving():
+   root.after(5, partial(move, root, (column[0], -start[0])))
+   root.after(5, partial(move2, root, (column[1], -start[1])))
+   root.after(5, partial(move3, root, (column[2], -start[2])))
+   root.after(5, partial(move4, root, (column[3], -start[3])))
+   root.after(5, partial(move5, root, (column[4], -start[4])))
+
+# count = 0
+# for i in range(3):
+#    for x in range(5):
+      # column = random.randrange(0, 601)
+      # move(root, (column, -100))
+   # count += 1
+   # root.mainloop()
+# move2(root, (200, -100))
+moving()
 
 
 root.mainloop()
