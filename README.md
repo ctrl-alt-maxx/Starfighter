@@ -221,10 +221,6 @@ scoreCounter() : permet d'incrémenter le score du joueur
 
 </details>
 
-### Classe HealthBar
-la barre de vie du vaisseau
-#### Attributs 
-- *health* : la vie du vaisseau
 ### Classe Ovni
 la classe Ovni permet de créer un ovni
 #### Attributs
