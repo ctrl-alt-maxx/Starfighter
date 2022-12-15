@@ -11,6 +11,7 @@ root.geometry("700x800")
 font.families()
 
 def callback(e):
+   """ _summary_ : Cette fonction permet de récupérer les coordonnées de la souris"""
    x= e.x
    y= e.y
    print("Pointer is currently at %d, %d" %(x,y))
@@ -18,13 +19,17 @@ def callback(e):
 root.bind('<Motion>',callback)
 
 def returnBack():
+    """_summary_ : Cette fonction permet de retourner au menu principal
+    """
     root.destroy()
     import menu
 # label = Label(root, text="STARFIGHTER", font=("Arial", 20), bg="black", fg="white")
 # label.place( x= 250, y= 60)
 
-
+    
 class RulesScreen:
+    """_summary_ : Cette classe permet d'afficher les règles du jeu
+    """
     def __init__(self, master):
         self.master = master
         self.score = "0"
