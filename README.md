@@ -83,6 +83,7 @@ move(event) : permet de déplacer le vaisseau en fonction du mouvement de la sou
 # Bind the move function 
 canvasBase.bind("<Motion>", move) 
 ```
+### Collision
 collision() : permet de détecter la collision entre le vaisseau et un astéroïde
 ```python
 def collision(objet):
@@ -124,5 +125,46 @@ moveLaser() : permet de déplacer le laser en fonction du mouvement du vaisseau
 
     canvasBase.bind_all("<1>", shoot);
 ```
-
+### Classe HUD
+le HUD est la barre de vie du vaisseau
+#### Attributs
+- *life* : la vie du vaisseau
+- *score* : le score du joueur
+#### Fonctions
+scoreCounter() : permet d'incrémenter le score du joueur
+```python
+    def scoreCounter(): 
+       global score
+       HUD.score += 1
+       print(HUD.score)
+```	
+### Classe HealthBar
+la barre de vie du vaisseau
+#### Attributs 
+- *health* : la vie du vaisseau
+### Classe Ovni
+la classe Ovni permet de créer un ovni
+#### Attributs
+- *imgOvni* : l'image de l'ovni
+- canvasBase : le canvas sur lequel on va dessiner
+### Classe Astéroïde
+la classe Astéroïde permet de créer un astéroïde
+#### Attributs
+- *imgAsteroide* : l'image de l'astéroïde
+- canvasBase : le canvas sur lequel on va dessiner
+### Classe Flash
+la classe Flash permet de créer un objet flash
+#### Attributs
+- *imgBolt* : l'image du flash
+- cansvasBase : le canvas sur lequel on va dessiner
+### Classe Fuel
+la classe Fuel permet de créer un objet fuel
+#### Attributs
+- *imgFuel* : l'image du fuel
+- canvasBase : le canvas sur lequel on va dessiner
+### Classe Aid
+la classe Aid permet de créer un objet aid
+#### Attributs
+- *imgAid* : l'image de l'aid
+- canvasBase : le canvas sur lequel on va dessiner
 
