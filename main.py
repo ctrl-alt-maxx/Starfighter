@@ -6,7 +6,7 @@ import tkinter as tk
 from tkinter import ANCHOR, CENTER, Canvas, Frame, OptionMenu, PhotoImage, Label, StringVar
 from PIL import ImageTk, Image
 import c31Geometry2 as c31
-import Objet as ob      # TO keep
+import Objet as ob      
 
 root = tk.Tk()
 
@@ -26,9 +26,6 @@ frame.pack()
 canvasBase = tk.Canvas(root, background="black", width=800, height=1000, highlightthickness=1, highlightbackground="red", relief='ridge')
 canvasBase.pack()
 
-"""
-
-"""
 class Vaisseau:
 
     imageVaisseau = Image.open("vaisseau.png")
@@ -46,8 +43,7 @@ class Vaisseau:
         
         img = canvasBase.create_image(e.x, e.y, image = image)
 
-    # Bind the move function 
-    canvasBase.bind("<Motion>", move)       ## THIS WORKS!! vaisseau follows the cursor
+    canvasBase.bind("<Motion>", move)       
         
 
 class Laser:
@@ -99,24 +95,6 @@ class HUD:
         vie = Image.open("lives.png")
         vie.resize((10,10), Image.ANTIALIAS)
 
-class HealthBar(object):
-    def __init__(self, canvas = None, x = 0, y = 0, initialHealth = 100, maxHealth = 100):
-        self.canvas = canvas
-        self.x = x
-        self.y = y
-
-        self.width = 100
-        self.height = 5
-
-        self.xvel = 0
-        self.yvel = 0
-
-        self.health = initialHealth
-
-        self.barOutline = self.canvas.create_rectangle(self.x, self.y, self.x + self.width, self.y + self.height, outline = 'white')
-
-        self.barFill = self.canvas.create_rectangle(self.x, self.y, self.x + self.health, self.y + self.height, outline = 'white', fill = 'red')
-
 def collision(objet):
     sb = canvasBase.bbox(Vaisseau)
     eb = canvasBase.bbox(objet)
@@ -142,6 +120,7 @@ column[5] = random.randrange(500, 601)
 start = [""] * 10
 for i in range(7):
    start[i] = random.randrange(0, 100)
+
 # CREATION DU TABLEAU DE VITESSE (TOMBE VITE OU LENTEMENT)
 speed = [""] * 10
 for i in range(7):
@@ -149,6 +128,7 @@ for i in range(7):
 
 # CREATION DU TABLEAU D'IMAGE
 item = [""] * 5
+
 # 5 OBJETS RANDOM VONT TOMBER 
 for i in range(5):
    num = random.randrange(0,41)
