@@ -9,6 +9,7 @@ root.title("Leaderboard")
 root.geometry("1500x1500")
 
 def returnBack():
+    """Ferme la fenêtre et ouvre le menu"""
     root.destroy()
     import menu
 
@@ -32,6 +33,8 @@ with open("StarFighter.csv", "r", newline="\n") as scorefile:
     data = list(reader)
 
 class Trier:
+    """_summary_:trier les scores selon les critères choisis"""
+
     
     scoreslist = []
     def trierPointsDecroissant(self):
@@ -118,10 +121,7 @@ class Trier:
         self.Scoreslist = sorted(data, key=Tir)
         self.Show()
         
-    # def Tir(score):
-    #     tir = 1000 + int(score[3])
-    #     battu = 500 - int(score[2])
-    #     return (tir, battu)       
+      
         
     def trierNomAZ(self):
         """Effectue le tri dans le nom des joueurs de A à Z

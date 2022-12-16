@@ -1,6 +1,6 @@
 # Starfighter
 >## Auteurs
->life
+> Maxime Rabbat, Eddee Charles, Usha Shivannie Sookwa
 ## Description
 Starfighter est un jeu de tir dans l'espace. Le joueur contrôle un vaisseau qui doit tirer sur des astéroïdes qui apparaissent aléatoirement. Le joueur a 3 vies. Le jeu se termine quand le joueur n'a plus de vie. Le score du joueur est le nombre d'astéroïdes qu'il a détruit. Le joueur peut sauvegarder son score dans un fichier csv.
 
@@ -16,7 +16,8 @@ la commande suivante dans le terminal permet d'installer PILLOW qui est une libr
 ---
 ## Page d'accueil
 ### *Menu.py*
-    
+### Classe StartScreen
+cette classe permet de créer la fenêtre du menu principal    
 ### Commencer une partie
 on appelle la méthode *startGame()* qui va détruire la fenêtre actuelle et ouvrir la fenêtre du jeu
 <details>
@@ -71,23 +72,35 @@ on appelle la méthode *quitGame()* qui va détruire la fenêtre actuelle et fer
 def quitGame():
     root.destroy()
 ```   
-</details>  	  
+</details>  
+
 ---    	 
     
 ## Règles
 ### *Rules.py*
 Affiche les règles du jeu
+### Classe RulesScreen
+cette classe permet de créer la fenêtre des règles
 
 a un bouton qui permet de revenir au menu principal
+<details>
+  <summary>Voir le code</summary>
+
+#### code:
 ```python
 def returnBack():
     root.destroy()
     import menu
 ```
+
+</details>
+
 ---
 ## Menu des Scores
 ### *Leaderboard.py*
 Affiche les scores des joueurs
+### Classe Trier 
+cette classe permet de trier les scores
 
 a un bouton qui permet de revenir au menu principal
 
@@ -95,6 +108,7 @@ a un bouton qui permet de classer les scores
 
 
 ---
+
 ## Jeu
 ### *Main.py*
 #### Initialisation
@@ -103,17 +117,26 @@ On initialise les variables suivantes:
 - *canvas* : le canvas sur lequel on va dessiner
 - *frame* : la frame qui contient le canvas
 - *image* : l'image du vaisseau
+- 
 ### Classe Vaisseau
+
 #### Attributs
 - *imageVaisseau* : l'image du vaisseau
 - *new_image* : l'image du vaisseau redimensionnée
 #### Fonctions
 left(e) : permet de déplacer le vaisseau vers la gauche
+
 right(e) : permet de déplacer le vaisseau vers la droite
-upe() : permet de déplacer le vaisseau vers le haut
+
+up(e) : permet de déplacer le vaisseau vers le haut
+
 down(e) : permet de déplacer le vaisseau vers le bas
 
 move(event) : permet de déplacer le vaisseau en fonction du mouvement de la souris
+<details>
+  <summary>Voir le code</summary>
+
+#### code:
 ```python
  def move(e):
         global image
@@ -126,8 +149,14 @@ move(event) : permet de déplacer le vaisseau en fonction du mouvement de la sou
 # Bind the move function 
 canvasBase.bind("<Motion>", move) 
 ```
+</details>
+
 ### Collision
 collision() : permet de détecter la collision entre le vaisseau et un astéroïde
+<details>
+  <summary>Voir le code</summary>
+
+#### code:
 ```python
 def collision(objet):
         sb = canvasBase.bbox(Vaisseau.new_image)
@@ -145,15 +174,27 @@ def collision(objet):
             canvasBase.move(objet, -25, 25)
             print("CONTACT TOP-LEFT")
 ```	
+</details>
+
 ### Classe Laser
 moveLaser() : permet de déplacer le laser en fonction du mouvement du vaisseau
+<details>
+  <summary>Voir le code</summary>
+
+#### code:
 ```python
   def moveLaser():
         global laser, laserLoop
         canvasBase.move(laser, 0, -10);
         laserLoop = root.after(10, Vaisseau.moveLaser)
 ```
+</details>
+
 ##### shoot() : permet de tirer un laser
+<details>
+  <summary>Voir le code</summary>
+
+#### code:
 ```python
  def shoot(event):
         global laser, laserLoop
@@ -168,6 +209,8 @@ moveLaser() : permet de déplacer le laser en fonction du mouvement du vaisseau
 
     canvasBase.bind_all("<1>", shoot);
 ```
+</details>
+
 ### Classe HUD
 le HUD est la barre de vie du vaisseau
 #### Attributs
@@ -175,36 +218,16 @@ le HUD est la barre de vie du vaisseau
 - *score* : le score du joueur
 #### Fonctions
 scoreCounter() : permet d'incrémenter le score du joueur
+<details>
+  <summary>Voir le code</summary>
+
+#### code:
 ```python
     def scoreCounter(): 
        global score
        HUD.score += 1
        print(HUD.score)
-```	
-### Classe HealthBar
-la barre de vie du vaisseau
-#### Attributs 
-- *health* : la vie du vaisseau
-### Classe Ovni
-la classe Ovni permet de créer un ovni
-#### Attributs
-- *imgOvni* : l'image de l'ovni
-- canvasBase : le canvas sur lequel on va dessiner
-### Classe Astéroïde
-la classe Astéroïde permet de créer un astéroïde
-#### Attributs
-- *imgAsteroide* : l'image de l'astéroïde
-- canvasBase : le canvas sur lequel on va dessiner
-### Classe Flash
-la classe Flash permet de créer un objet flash
-ce dernier permet d'accéléré le vaisseau
-#### Attributs
-- *imgBolt* : l'image du flash
-- cansvasBase : le canvas sur lequel on va dessiner
-### Classe Aid
-la classe Aid permet de créer un objet aid
-ce dernier permet de réparer le vaisseau
-#### Attributs
-- *imgAid* : l'image de l'aid
-- canvasBase : le canvas sur lequel on va dessiner
+```
+
+</details>
 
