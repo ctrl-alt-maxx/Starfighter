@@ -1,4 +1,3 @@
-
 from functools import partial
 from hashlib import new
 import random
@@ -7,7 +6,7 @@ import tkinter as tk
 from tkinter import ANCHOR, CENTER, Canvas, Frame, OptionMenu, PhotoImage, Label, StringVar
 from PIL import ImageTk, Image
 import c31Geometry2 as c31
-import Objet as ob      
+import Objet as ob      # TO keep
 
 root = tk.Tk()
 
@@ -18,7 +17,7 @@ root.config(background="black")
 root.title("Starfighter")
 
 # FIXE LA TAILLE EN PIXEL 
-root.geometry("5000x5000")
+root.geometry("1000x1000")
 
 frame = Frame(root)
 frame.pack()
@@ -41,10 +40,11 @@ class Vaisseau:
         global image
         new = Vaisseau.imageVaisseau.resize((50,50), Image.ANTIALIAS)
         image = ImageTk.PhotoImage(new)
-        
         img = canvasBase.create_image(e.x, e.y, image = image)
 
-    canvasBase.bind("<Motion>", move)       
+    
+    # Bind the move function 
+    canvasBase.bind("<Motion>", move)       ## THIS WORKS!! vaisseau follows the cursor
         
 
 class Laser:
@@ -78,26 +78,44 @@ class Laser:
 class HUD: 
     # Doit etre capable d'afficher les points courants, niveau de jeu, vie restante, etc.
     score = 0
+    lives = 3
 
     def scoreCounter(): 
        global score
        HUD.score += 1
        print(HUD.score)
     
-    labelPoints = tk.Label(root, text='Score: ' + str(score), font = 90, padx=10, pady=10)
+    labelPoints = tk.Label(root, text="Score: " + str(score), font=("Terminal", 20), bg="black", fg="red")
     labelPoints.place(relx=0.0, rely=0.0, anchor='nw')
+    
+    labelLife = tk.Label(root, text="Life:  " + str(lives), font=("Terminal", 20), bg="black", fg="red")
+    labelLife.place(x=0.0, y=30.0)
 
     menu = StringVar()
     menu.set("Choississez le niveau de jeu")
     drop = OptionMenu(root, menu, "Facile", "Moyen", "Difficile")
     drop.pack(anchor="e")
 
-    def vieRestante():
-        vie = Image.open("lives.png")
-        vie.resize((10,10), Image.ANTIALIAS)
+class HealthBar(object):
+    def __init__(self, canvas = None, x = 0, y = 0, initialHealth = 100, maxHealth = 100):
+        self.canvas = canvas
+        self.x = x
+        self.y = y
+
+        self.width = 100
+        self.height = 5
+
+        self.xvel = 0
+        self.yvel = 0
+
+        self.health = initialHealth
+
+        self.barOutline = self.canvas.create_rectangle(self.x, self.y, self.x + self.width, self.y + self.height, outline = 'white')
+
+        self.barFill = self.canvas.create_rectangle(self.x, self.y, self.x + self.health, self.y + self.height, outline = 'white', fill = 'red')
 
 def collision(objet):
-    sb = canvasBase.bbox(Vaisseau)
+    sb = canvasBase.bbox(Vaisseau.imageVaisseau)
     eb = canvasBase.bbox(objet)
     if eb[0] < sb[2] < eb[2] and eb[1] < sb[1] < eb[3]:
         canvasBase.move(objet, 25, -25)
@@ -121,7 +139,6 @@ column[5] = random.randrange(500, 601)
 start = [""] * 10
 for i in range(7):
    start[i] = random.randrange(0, 100)
-
 # CREATION DU TABLEAU DE VITESSE (TOMBE VITE OU LENTEMENT)
 speed = [""] * 10
 for i in range(7):
@@ -129,17 +146,16 @@ for i in range(7):
 
 # CREATION DU TABLEAU D'IMAGE
 item = [""] * 5
-
 # 5 OBJETS RANDOM VONT TOMBER 
 for i in range(5):
    num = random.randrange(0,41)
-   if num <= 25:
+   if num <= 20:
       item[i] = ob.Objet.ovni
-   elif num >= 26 and num <= 30:
+   elif num >= 21 and num <= 25:
       item[i] = ob.Objet.bolt
-   elif num >= 31 and num <= 37:
+   elif num >= 26 and num <= 34:
       item[i] = ob.Objet.asteroid
-   elif num >= 38 and num <= 40:
+   elif num >= 35 and num <= 40:
       item[i] = ob.Objet.aid
 
 # Define a function to allow the image to move within the canvas
