@@ -72,7 +72,8 @@ on appelle la méthode *quitGame()* qui va détruire la fenêtre actuelle et fer
 def quitGame():
     root.destroy()
 ```   
-</details>  	  
+</details>  
+
 ---    	 
     
 ## Règles
@@ -91,6 +92,7 @@ def returnBack():
     root.destroy()
     import menu
 ```
+
 </details>
 
 ---
@@ -123,8 +125,11 @@ On initialise les variables suivantes:
 - *new_image* : l'image du vaisseau redimensionnée
 #### Fonctions
 left(e) : permet de déplacer le vaisseau vers la gauche
+
 right(e) : permet de déplacer le vaisseau vers la droite
+
 up(e) : permet de déplacer le vaisseau vers le haut
+
 down(e) : permet de déplacer le vaisseau vers le bas
 
 move(event) : permet de déplacer le vaisseau en fonction du mouvement de la souris
