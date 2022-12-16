@@ -190,7 +190,7 @@ moveLaser() : permet de déplacer le laser en fonction du mouvement du vaisseau
 ```
 </details>
 
-##### shoot() : permet de tirer un laser
+shoot() : permet de tirer un laser
 <details>
   <summary>Voir le code</summary>
 
@@ -218,6 +218,7 @@ le HUD est la barre de vie du vaisseau
 - *score* : le score du joueur
 #### Fonctions
 scoreCounter() : permet d'incrémenter le score du joueur
+
 <details>
   <summary>Voir le code</summary>
 
@@ -228,8 +229,23 @@ scoreCounter() : permet d'incrémenter le score du joueur
        HUD.score += 1
        print(HUD.score)
 ```
-
 </details>
+
+vieRestante() : permet de décrémenter la vie du vaisseau
+
+<details>
+  <summary>Voir le code</summary>
+
+#### code:
+```python
+    def vieRestante():
+        vie = Image.open("lives.png")
+        vie.resize((10,10), Image.ANTIALIAS)
+```
+</details>
+
+
+
 
 ## Objets
 ### Classe Objet
@@ -238,4 +254,4 @@ scoreCounter() : permet d'incrémenter le score du joueur
 - *aid* : l'image de la boîte de soin
 - *bolt* : l'image du flash
 - *lives* : l'image de la vie
-- *ovni
+- *ovni* : l'image de l'ovni
