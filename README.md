@@ -231,3 +231,11 @@ scoreCounter() : permet d'incrémenter le score du joueur
 
 </details>
 
+## Objets
+### Classe Objet
+#### Attributs
+- *asteroid* : l'image de l'astéroïde
+- *aid* : l'image de la boîte de soin
+- *bolt* : l'image du flash
+- *lives* : l'image de la vie
+- *ovni
